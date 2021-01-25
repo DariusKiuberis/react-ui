@@ -1,10 +1,9 @@
 import React from 'react'
-import './styles.css'
 
 const Foo = (props) => {
 
     return (
-        <div className="foo">
+        <div >
             Component Foo: {props.text}
         </div>
     )

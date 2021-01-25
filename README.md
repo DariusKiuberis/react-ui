@@ -15,12 +15,11 @@ npm install --save @darius-kiuberis/react-ui
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from '@darius-kiuberis/react-ui'
-import '@darius-kiuberis/react-ui/dist/index.css'
+import { Button } from '@darius-kiuberis/react-ui'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <Button text={ "Click me" }/>
   }
 }
 ```

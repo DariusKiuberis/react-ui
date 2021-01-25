@@ -1,16 +1,12 @@
 import React from 'react'
-import { ExampleComponent, Foo, Bar } from '@darius-kiuberis/react-ui'
-import '@darius-kiuberis/react-ui/dist/index.css'
+import { Button} from '@darius-kiuberis/react-ui'
 
 const App = () => {
   return (
     <div>
-      <ExampleComponent text="Create React Library Example 😄" />
-      <Foo text={"FOOO"}/>
-      <Bar text={"BARRR"} />
+      <Button label={33377} />
     </div>
   )
-
 }
 
 export default App
