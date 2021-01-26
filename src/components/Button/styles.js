@@ -13,8 +13,6 @@ const styles = (props) => {
                         minHeight: 50,
                         backgroundColor: "white",
                         ...prop
-
-
                     }
                 )
 

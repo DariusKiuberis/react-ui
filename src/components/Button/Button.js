@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from "prop-types";
-import {handleButtonClick} from './logic/buttonClick'
+import handleButtonClick from './logic/handleButtonClick'
+import renderStyles from './logic/renderStyles'
+import renderChildren from './logic/renderChildren';
 import styles from './styles'
+
+//todo  generate the style from props passed to it,
 
 /**
  * Button component
@@ -10,41 +14,18 @@ import styles from './styles'
  * @return {*}
  */
 const Button = ({ label, children, onClick, disabled, style, className }) => {
-    // console.log("props : ", label, children, onClick, disabled, "style : ", style)
+
     const s = styles({ role: "admin", company: "IBM" })
-
-    // console.log(1111, s.root())
-
-    const renderChildren = () => {
-        if (label) {
-            return label;
-        }
-
-        if (children) {
-            return children;
-        }
-
-        return "Click";
-    };
-
-   handleButtonClick(event, disabled , onClick)
-
-    const renderStyles = () => {
-        if (style) {
-            return s.root(style)
-        }
-        return
-    }
 
     return (
         <button
             className={className}
-            style={renderStyles()}
-            onClick={handleButtonClick}
+            style={renderStyles(style, s)}
+            onClick={handleButtonClick(event, disabled, onClick)}
             disabled={disabled}
         >
             {/* <div style={s.wrap("IBM")} > */}
-            {renderChildren()}
+            {renderChildren(label, children)}
             {/* </div> */}
 
         </button>
