@@ -5,17 +5,16 @@ import styles from './styles'
 /**
  * Button component
  *
- * @param {*} props
+ * @param {*} { label, children, onClick, disabled, style }
  * @return {*}
  */
-const Button = ({ label, children, onClick, disabled }) => {
-    console.log("props : ", label, children, onClick, disabled)
+const Button = ({ label, children, onClick, disabled, style, className }) => {
+    console.log("props : ", label, children, onClick, disabled, "style : ", style)
     const s = styles({ role: "admin", company: "IBM" })
 
-    // console.log(1111, s.wrap("IBM"))
+    console.log(1111, s.root())
 
     const renderChildren = () => {
-
         if (label) {
             return label;
         }
@@ -24,7 +23,7 @@ const Button = ({ label, children, onClick, disabled }) => {
             return children;
         }
 
-        return "Button";
+        return "Click";
     };
 
     const handleButtonClick = event => {
@@ -34,13 +33,25 @@ const Button = ({ label, children, onClick, disabled }) => {
         onClick && onClick({ event });
     };
 
+    const renderStyles = () => {
+        if (style) {
+            return s.root(style)
+        }
+        return
+    }
+
+    console.log(" renderStyle() : ", renderStyles())
+
     return (
-        <button style={s.root}
+        <button
+            className={className}
+            style={renderStyles()}
             onClick={handleButtonClick}
+            disabled={disabled}
         >
-            <div style={s.wrap("IBM")} >
-                {renderChildren()}
-            </div>
+            {/* <div style={s.wrap("IBM")} > */}
+            {renderChildren()}
+            {/* </div> */}
 
         </button>
     )
