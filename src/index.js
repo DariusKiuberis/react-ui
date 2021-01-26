@@ -1,6 +1,3 @@
-import React from 'react'
-import Bar from './components/Bar/Bar'
-import Foo from './components/Foo/Foo'
-import Button from './components/Button/Button'
+import { Button, ProgressBar } from './components/index'
 
-export  { Foo, Bar, Button }
+export { Button, ProgressBar }

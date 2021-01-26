@@ -3,17 +3,7 @@ const styles = (props) => {
     return (
         {
             root(prop) {
-                console.log('"root prop :"',    {
-                    border: "solid 1px grey",
-                    borderRadius: 3,
-                    cursor: "pointer",
-                    minWidth: 200,
-                    minHeight: 50,
-                    backgroundColor: "white",
-                    ...prop
 
-
-                } )
                 return (
                     {
                         border: "solid 1px grey",
@@ -30,7 +20,7 @@ const styles = (props) => {
 
             },
             wrap(prop) {
-                // console.log("styles props : ", prop)
+
                 if (prop === "IBM") {
 
                     return (

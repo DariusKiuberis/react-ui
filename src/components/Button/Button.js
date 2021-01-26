@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from "prop-types";
+import {handleButtonClick} from './logic/buttonClick'
 import styles from './styles'
 
 /**
@@ -9,10 +10,10 @@ import styles from './styles'
  * @return {*}
  */
 const Button = ({ label, children, onClick, disabled, style, className }) => {
-    console.log("props : ", label, children, onClick, disabled, "style : ", style)
+    // console.log("props : ", label, children, onClick, disabled, "style : ", style)
     const s = styles({ role: "admin", company: "IBM" })
 
-    console.log(1111, s.root())
+    // console.log(1111, s.root())
 
     const renderChildren = () => {
         if (label) {
@@ -26,12 +27,7 @@ const Button = ({ label, children, onClick, disabled, style, className }) => {
         return "Click";
     };
 
-    const handleButtonClick = event => {
-        console.log("BUTTON CLICKED", event)
-        if (disabled) return;
-
-        onClick && onClick({ event });
-    };
+   handleButtonClick(event, disabled , onClick)
 
     const renderStyles = () => {
         if (style) {
@@ -39,8 +35,6 @@ const Button = ({ label, children, onClick, disabled, style, className }) => {
         }
         return
     }
-
-    console.log(" renderStyle() : ", renderStyles())
 
     return (
         <button
