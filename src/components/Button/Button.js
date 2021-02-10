@@ -21,6 +21,7 @@ const Button = ({ label, children, onClick, disabled, style, className }) => {
         <button
             className={className}
             style={renderStyles(style, s)}
+            // style={s.root()}
             onClick={handleButtonClick(event, disabled, onClick)}
             disabled={disabled}
         >

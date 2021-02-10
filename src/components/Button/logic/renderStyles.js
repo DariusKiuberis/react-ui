@@ -1,7 +1,9 @@
+
 /**
  * Render styles
  *
  * @param {*} style
+ * @param {*} s
  * @return {*}
  */
 const renderStyles = (style, s) => {

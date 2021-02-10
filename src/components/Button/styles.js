@@ -3,6 +3,7 @@ const styles = (props) => {
     return (
         {
             root(prop) {
+            console.log("file: styles.js -> line 6 -> prop", prop);
 
                 return (
                     {
