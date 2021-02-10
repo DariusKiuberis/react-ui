@@ -5,7 +5,7 @@ import renderStyles from './logic/renderStyles'
 import renderChildren from './logic/renderChildren';
 import styles from './styles'
 
-//todo  generate the style from props passed to it,
+//@todo  generate the style from props passed to it,
 
 /**
  * Button component
@@ -13,12 +13,14 @@ import styles from './styles'
  * @param {*} { label, children, onClick, disabled, style }
  * @return {*}
  */
-const Button = ({ label, children, onClick, disabled, style, className }) => {
+const Button = ({ label, children, onClick, disabled, style, className, ...rest }) => {
+console.log("file: Button.js -> line 17 -> rest", rest);
 
     const s = styles({ role: "admin", company: "IBM" })
 
     return (
         <button
+        {...rest}
             className={className}
             style={renderStyles(style, s)}
             // style={s.root()}

@@ -10,7 +10,7 @@ const ButtonComponent = () => {
                 style={{ backgroundColor: "red" }}
                 label={"lalal" + 33377}
                 onClick={(e) => e}
-                disabled={false}
+                disabled={true}
             >
                 <div>child</div>
             </Button>
