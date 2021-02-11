@@ -11,6 +11,6 @@ const App = () => {
     </div>
   )
 }
-console.log("🚀 ~ file: App.js ~ line 24 ~ App ~ App", process.env)
+// console.log("🚀 ~ file: App.js ~ line 24 ~ App ~ App", process.env)
 
 export default App

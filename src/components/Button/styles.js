@@ -1,4 +1,5 @@
 const styles = (props) => {
+console.log("file: styles.js -> line 2 -> props", props);
 
     return (
         {
@@ -10,8 +11,8 @@ const styles = (props) => {
                         border: "solid 1px grey",
                         borderRadius: 3,
                         cursor: "pointer",
-                        minWidth: 200,
-                        minHeight: 50,
+                        // minWidth: 600,
+                        // minHeight: 50,
                         backgroundColor: "white",
                         ...prop
                     }

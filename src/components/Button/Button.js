@@ -5,7 +5,7 @@ import renderStyles from './logic/renderStyles'
 import renderChildren from './logic/renderChildren';
 import styles from './styles'
 
-//@todo  generate the style from props passed to it,
+//@todo add StoryShot, so it works with Jest
 
 /**
  * Button component
@@ -14,22 +14,24 @@ import styles from './styles'
  * @return {*}
  */
 const Button = ({ label, children, onClick, disabled, style, className, ...rest }) => {
-console.log("file: Button.js -> line 17 -> rest", rest);
+    console.log("file: Button.js -> line 17 -> rest", rest);
 
     const s = styles({ role: "admin", company: "IBM" })
 
     return (
         <button
-        {...rest}
+            {...rest}
             className={className}
             style={renderStyles(style, s)}
             // style={s.root()}
             onClick={handleButtonClick(event, disabled, onClick)}
             disabled={disabled}
         >
-            {/* <div style={s.wrap("IBM")} > */}
-            {renderChildren(label, children)}
-            {/* </div> */}
+            <div
+                // style={s.wrap("IBM")}
+            >
+                {renderChildren(label, children)}
+            </div>
 
         </button>
     )
@@ -42,7 +44,8 @@ Button.propTypes = {
     ]),
     onClick: PropTypes.func,
     children: PropTypes.node,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    // user: PropTypes.shape({}),
 };
 
 Button.defaultProps = {
@@ -51,6 +54,7 @@ Button.defaultProps = {
     size: "",
     variant: "basic",
     disabled: false,
+    onClick: undefined
 };
 
 export default Button

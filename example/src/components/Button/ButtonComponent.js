@@ -7,7 +7,7 @@ const ButtonComponent = () => {
         <>
             <Button className="darius" />
             <Button
-                style={{ backgroundColor: "red" }}
+                style={{ backgroundColor: "red", border: " solid blue" }}
                 label={"lalal" + 33377}
                 onClick={(e) => e}
                 disabled={true}
