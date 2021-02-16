@@ -1,56 +1,23 @@
-const styles = (props) => {
+import styled from 'styled-components'
+// import {grey} from '../../stylesheets/styles/colors'
 
-    return (
-        {
-            root(prop) {
-                console.log('"root prop :"',    {
-                    border: "solid 1px grey",
-                    borderRadius: 3,
-                    cursor: "pointer",
-                    minWidth: 200,
-                    minHeight: 50,
-                    backgroundColor: "white",
-                    ...prop
+export const ButtonStyled = styled.button.attrs(props => ({
+    // we can define static props
+    type: "text",
 
+    test: "1.5em",
+    // or we can define dynamic ones
+    size: props.size || "17em",
+}))`
+  background: ${props => props.primary ? "green" : "white"};
+  color: ${props => props.primary ? "white" : "palevioletred"};
+  font-size: ${props => props.test};
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
 
-                } )
-                return (
-                    {
-                        border: "solid 1px grey",
-                        borderRadius: 3,
-                        cursor: "pointer",
-                        minWidth: 200,
-                        minHeight: 50,
-                        backgroundColor: "white",
-                        ...prop
-
-
-                    }
-                )
-
-            },
-            wrap(prop) {
-                // console.log("styles props : ", prop)
-                if (prop === "IBM") {
-
-                    return (
-                        {
-                            border: "solid 1px red",
-                            backgroundColor: "pink"
-                        }
-                    )
-                }
-
-                return (
-                    {
-                        border: "solid 5px blue",
-                        backgroundColor: "tomato"
-                    }
-                )
-
-            }
-        }
-    )
-}
-
-export default styles
+  &:hover {
+    color: grey;
+  }
+`;
