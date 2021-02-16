@@ -7,7 +7,6 @@
  * @return {*}
  */
 const handleButtonClick = (event, disabled, onClick) => {
-    // console.log("BUTTON CLICKED", event)
 
     if (disabled) return;
     onClick && onClick({ event });

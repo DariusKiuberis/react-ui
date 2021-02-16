@@ -5,15 +5,17 @@ import './ButtonComponent.scss'
 const ButtonComponent = () => {
     return (
         <>
+            <Button label="Default"  primary/>
+
             <Button className="darius" />
             <Button
-                style={{ backgroundColor: "red", border: " solid blue" }}
+                style={{  border: " solid blue" }}
                 label={"lalal" + 33377}
-                onClick={(e) => e}
-                disabled={true}
-            >
+                onClick={(e) => console.log(11111111, e)}
+                disabled={false} >
                 <div>child</div>
             </Button>
+
         </>
     )
 }

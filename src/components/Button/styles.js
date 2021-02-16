@@ -1,46 +1,28 @@
-const styles = (props) => {
-console.log("file: styles.js -> line 2 -> props", props);
+import styled from 'styled-components'
 
-    return (
-        {
-            root(prop) {
-            console.log("file: styles.js -> line 6 -> prop", prop);
+export const ButtonStyled = styled.button.attrs(props => ({
+    // we can define static props
+    type: "text",
 
-                return (
-                    {
-                        border: "solid 1px grey",
-                        borderRadius: 3,
-                        cursor: "pointer",
-                        // minWidth: 600,
-                        // minHeight: 50,
-                        backgroundColor: "white",
-                        ...prop
-                    }
-                )
+    test: "1.5em",
+    // or we can define dynamic ones
+    size: props.size || "17em",
+}))`
+  background: ${props => props.primary ? "palevioletred" : "white"};
+  color: ${props => props.primary ? "white" : "palevioletred"};
+  display: ${props => console.log(2222222, props.test)};
+  font-size: ${props => props.test};
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
 
-            },
-            wrap(prop) {
+  &:hover {
+    color: grey; // <Thing> when hovered
+  }
+`;
 
-                if (prop === "IBM") {
 
-                    return (
-                        {
-                            border: "solid 1px red",
-                            backgroundColor: "pink"
-                        }
-                    )
-                }
 
-                return (
-                    {
-                        border: "solid 5px blue",
-                        backgroundColor: "tomato"
-                    }
-                )
 
-            }
-        }
-    )
-}
-
-export default styles
+console.log("file: styles.js -> line 10 -> ButtonStyled", ButtonStyled);

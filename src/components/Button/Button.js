@@ -1,39 +1,41 @@
 import React from 'react'
 import PropTypes from "prop-types";
 import handleButtonClick from './logic/handleButtonClick'
-import renderStyles from './logic/renderStyles'
 import renderChildren from './logic/renderChildren';
-import styles from './styles'
+import { ButtonStyled } from './styles'
 
-//@todo add StoryShot, so it works with Jest
+
+//@note  StoryShot works with Jest
 
 /**
- * Button component
+ * Button component, use carefully :)
  *
  * @param {*} { label, children, onClick, disabled, style }
  * @return {*}
  */
-const Button = ({ label, children, onClick, disabled, style, className, ...rest }) => {
-    console.log("file: Button.js -> line 17 -> rest", rest);
-
-    const s = styles({ role: "admin", company: "IBM" })
+const Button = ({ label, children, onClick, disabled, style, className, backgroundColor, primary, size, ...rest }) => {
+    // console.log(" Button.js -> ",
+    //     // "label : ", label,
+    //     // "children : ", children,
+    //     // "onClick :", onClick,
+    //     // "disabled : ", disabled,
+    //     // "style : ", style,
+    //     // "className : ", className,
+    //     // "backgroundColor : ", backgroundColor,
+    //     // "size : ", size,
+    //     // "rest : ", rest
+    //     );
 
     return (
-        <button
+        <ButtonStyled
             {...rest}
-            className={className}
-            style={renderStyles(style, s)}
-            // style={s.root()}
-            onClick={handleButtonClick(event, disabled, onClick)}
-            disabled={disabled}
+            style={style}
+            primary={primary}
+            onClick={onClick}
+            disabled={disabled ? disabled : false}
         >
-            <div
-                // style={s.wrap("IBM")}
-            >
-                {renderChildren(label, children)}
-            </div>
-
-        </button>
+            {renderChildren(label, children)}
+        </ButtonStyled>
     )
 }
 
@@ -46,15 +48,16 @@ Button.propTypes = {
     children: PropTypes.node,
     disabled: PropTypes.bool,
     // user: PropTypes.shape({}),
+    size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 Button.defaultProps = {
-    className: "",
-    label: "",
-    size: "",
+    className: {},
+    label: "Hello Button",
+    size: "medium",
     variant: "basic",
     disabled: false,
-    onClick: undefined
+    onClick: undefined,
 };
 
 export default Button
