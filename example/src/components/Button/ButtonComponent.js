@@ -1,12 +1,16 @@
 import React from 'react'
-import { Button } from '@darius-kiuberis/react-ui'
+import { Button, colors } from '@darius-kiuberis/react-ui'
+
+
+const {red} = colors
 
 const ButtonComponent = () => {
     return (
         <>
-            <Button label="Default"  variant>Default button </Button>
+            <Button >Default button </Button>
 
             <Button
+            backgroundColor={red[8]}
                 style={{  border: " solid blue" }}
                 onClick={(e) => console.log(11111111, e)}
                 disabled={false} >

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+// import {grey} from '../../stylesheets/styles/colors'
 
 export const ButtonStyled = styled.button.attrs(props => ({
     // we can define static props
@@ -8,9 +9,8 @@ export const ButtonStyled = styled.button.attrs(props => ({
     // or we can define dynamic ones
     size: props.size || "17em",
 }))`
-  background: ${props => props.primary ? "palevioletred" : "white"};
+  background: ${props => props.primary ? "green" : "white"};
   color: ${props => props.primary ? "white" : "palevioletred"};
-  display: ${props => console.log(2222222, props.test)};
   font-size: ${props => props.test};
   margin: 1em;
   padding: 0.25em 1em;
@@ -21,8 +21,3 @@ export const ButtonStyled = styled.button.attrs(props => ({
     color: grey;
   }
 `;
-
-
-
-
-console.log("file: styles.js -> line 10 -> ButtonStyled", ButtonStyled);

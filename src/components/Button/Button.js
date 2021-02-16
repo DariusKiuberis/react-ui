@@ -1,7 +1,10 @@
 import React from 'react'
 import PropTypes from "prop-types";
+import { random, type} from '@darius-kiuberis/helper'
 import handleButtonClick from './logic/handleButtonClick'
 import renderChildren from './logic/renderChildren';
+import log from '../../utils/helpers/console.log';
+import {colors} from '../../stylesheets/styles/colors'
 import { ButtonStyled } from './styles'
 
 //@note  StoryShot works with Jest
@@ -17,7 +20,8 @@ import { ButtonStyled } from './styles'
  */
 const Button = ({ children, backgroundColor, color, disabled, fullWidth,
      size, onHover, variant, shadow, leftIcon, rightIcon, onClick, style, ...rest }) => {
-    // console.log(" Button.js -> ",
+
+    //  log(" Button.js -> ",
     //     // "children : ", children,
     //     // "backgroundColor : ", backgroundColor,
     //     // "color : " , color ,
@@ -45,7 +49,7 @@ const Button = ({ children, backgroundColor, color, disabled, fullWidth,
 
 Button.propTypes = {
     children: PropTypes.node,
-    backgroundColor: PropTypes,
+    backgroundColor: PropTypes.string,
     color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
     disabled: PropTypes.bool,
     fullWidth: PropTypes.bool,
