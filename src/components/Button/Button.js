@@ -4,25 +4,29 @@ import handleButtonClick from './logic/handleButtonClick'
 import renderChildren from './logic/renderChildren';
 import { ButtonStyled } from './styles'
 
-
 //@note  StoryShot works with Jest
 
 /**
- * Button component, use carefully :)
+ * Button component
  *
- * @param {*} { label, children, onClick, disabled, style }
- * @return {*}
+ * @param {*} { children, backgroundColor, color, disabled, fullWidth, size, onHover, variant, onClick, style, ...rest }
+ *
+ * @param {node} leftIcon Element placed before the children.
+ * @param {node} rightIcon Element placed after the children.
+ * @return {node}
  */
-const Button = ({ label, children, onClick, disabled, style, className, backgroundColor, primary, size, ...rest }) => {
+const Button = ({ children, backgroundColor, color, disabled, fullWidth,
+     size, onHover, variant, shadow, leftIcon, rightIcon, onClick, style, ...rest }) => {
     // console.log(" Button.js -> ",
-    //     // "label : ", label,
     //     // "children : ", children,
-    //     // "onClick :", onClick,
-    //     // "disabled : ", disabled,
-    //     // "style : ", style,
-    //     // "className : ", className,
     //     // "backgroundColor : ", backgroundColor,
+    //     // "color : " , color ,
+    //     // "disabled : ", disabled,
     //     // "size : ", size,
+    //     // "onHover : " , onHover ,
+    //     // "variant : " , variant ,
+    //     // "onClick :", onClick,
+    //     // "style : ", style,
     //     // "rest : ", rest
     //     );
 
@@ -30,34 +34,43 @@ const Button = ({ label, children, onClick, disabled, style, className, backgrou
         <ButtonStyled
             {...rest}
             style={style}
-            primary={primary}
+            variant={variant}
             onClick={onClick}
             disabled={disabled ? disabled : false}
         >
-            {renderChildren(label, children)}
+            {children}
         </ButtonStyled>
     )
 }
 
 Button.propTypes = {
-    label: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
-    onClick: PropTypes.func,
     children: PropTypes.node,
+    backgroundColor: PropTypes,
+    color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
     disabled: PropTypes.bool,
-    // user: PropTypes.shape({}),
+    fullWidth: PropTypes.bool,
     size: PropTypes.oneOf(['small', 'medium', 'large']),
+    onHover: PropTypes.bool,
+    variant: PropTypes.oneOf(['basic', 'download', 'upload']),
+    shadow: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
+    leftIcon: PropTypes.node,
+    rightIcon: PropTypes.node,
+    onClick: PropTypes.func,
+    style: PropTypes.object
 };
 
 Button.defaultProps = {
-    className: {},
-    label: "Hello Button",
-    size: "medium",
-    variant: "basic",
+    children: "Click",
+    backgroundColor: "white",
+    color: 'default',
     disabled: false,
+    fullWidth: false,
+    size: 'medium',
+    onHover: true,
+    variant: 'basic',
+    shadow: 0,
     onClick: undefined,
+    style: undefined
 };
 
 export default Button

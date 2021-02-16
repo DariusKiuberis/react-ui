@@ -18,7 +18,7 @@ export const ButtonStyled = styled.button.attrs(props => ({
   border-radius: 3px;
 
   &:hover {
-    color: grey; // <Thing> when hovered
+    color: grey;
   }
 `;
 
