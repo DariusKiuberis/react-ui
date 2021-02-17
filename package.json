@@ -25,6 +25,9 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "np": {
+		"test": false
+	},
   "peerDependencies": {
     "react": "^16.0.0"
   },
