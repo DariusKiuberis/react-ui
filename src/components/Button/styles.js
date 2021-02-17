@@ -1,23 +1,42 @@
 import styled from 'styled-components'
-// import {grey} from '../../stylesheets/styles/colors'
+import { colors } from '../../stylesheets/styles/colors'
 
-export const ButtonStyled = styled.button.attrs(props => ({
-    // we can define static props
-    type: "text",
+const { blue } = colors
 
-    test: "1.5em",
-    // or we can define dynamic ones
-    size: props.size || "17em",
+const handleWidth = (props) => {
+  return props.fullWidth ? '100%' : 'auto'
+}
+
+//@todo hover and active colors make changeble
+export const ButtonStyled = styled.button.attrs((props) => ({
+  activeBgColor: props.disabled === true || props.active === false ? "" : blue[9],
+  disabledBackground: props.disabledBackground,
+  disabledColor: props.disabledColor,
+  color: props.color,
+  hoverBgColor: props.hover === true ? blue[7] : props.backgroundColor,
+  size: props.size
 }))`
-  background: ${props => props.primary ? "green" : "white"};
-  color: ${props => props.primary ? "white" : "palevioletred"};
-  font-size: ${props => props.test};
-  margin: 1em;
+  background-color: ${(props) => props.backgroundColor};
+  color: ${(props) => props.color};
+  width: ${(props) => handleWidth(props)};
+  font-size: ${(props) => props.size};
   padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
 
   &:hover {
-    color: grey;
+    background-color:  ${(props) => props.hoverBgColor};
   }
-`;
+
+  &:disabled{
+   background-color: ${(props) => props.disabledBackground};
+   color: ${(props) => props.disabledColor};
+   cursor: not-allowed;
+ }
+
+  &:active {
+  background-color: ${(props) => props.activeBgColor};
+ }
+`
+// transition : ${(props) => console.log(111111, props)};
