@@ -1,78 +1,109 @@
 import React from 'react'
 import PropTypes from "prop-types";
-import styles from './styles'
+import { random, type } from '@darius-kiuberis/helper'
+import handleButtonClick from './logic/handleButtonClick'
+import renderChildren from './logic/renderChildren';
+import log from '../../utils/helpers/console.log';
+import { colors } from '../../stylesheets/styles/colors'
+import { ButtonStyled } from './styles'
+
+// a b c d e f g h i j k l m n o p q r s t u v w x y z
+
+const { grey, white } = colors
 
 /**
  * Button component
  *
- * @param {*} { label, children, onClick, disabled, style }
- * @return {*}
+ * @param {boolean} active Clicking on button background changes or not
+ * @param {string} backgroundColor Background color for button
+ * @param {string | number | node} children Children passed to button
+ * @param {boolean} shadow Shadow box arround button
+ * @param {node} leftIcon Element placed before the children.
+ * @param {node} rightIcon Element placed after the children.
+ *
+ * @return {node}
  */
-const Button = ({ label, children, onClick, disabled, style, className }) => {
-    console.log("props : ", label, children, onClick, disabled, "style : ", style)
-    const s = styles({ role: "admin", company: "IBM" })
+const Button = ({ active, backgroundColor, children, color, disabled, disabledBackground,
+    disabledColor, fullWidth, hover, leftIcon, onClick, rightIcon,
+    shadow, size, style, variant, ...rest }) => {
 
-    console.log(1111, s.root())
-
-    const renderChildren = () => {
-        if (label) {
-            return label;
-        }
-
-        if (children) {
-            return children;
-        }
-
-        return "Click";
-    };
-
-    const handleButtonClick = event => {
-        console.log("BUTTON CLICKED", event)
-        if (disabled) return;
-
-        onClick && onClick({ event });
-    };
-
-    const renderStyles = () => {
-        if (style) {
-            return s.root(style)
-        }
-        return
-    }
-
-    console.log(" renderStyle() : ", renderStyles())
+    // log(" Button.js -> ",
+    //     // "children : ", children,
+    //     // "backgroundColor : ", backgroundColor,
+    //     // "color : " , color ,
+    //     // "disabled : ", disabled,
+    //     // "size : ", size,
+    //     // "hover : " , hover ,
+    //     // "variant : " , variant ,
+    //     // "onClick :", onClick,
+    //     // "style : ", style,
+    //     // "rest : ", rest
+    // );
 
     return (
-        <button
-            className={className}
-            style={renderStyles()}
-            onClick={handleButtonClick}
+        <ButtonStyled
+            active={active}
+            backgroundColor={backgroundColor}
+            color={color}
             disabled={disabled}
+            disabledBackground={disabledBackground}
+            disabledColor={disabledColor}
+            fullWidth={fullWidth}
+            hover={hover}
+            shadow={shadow}
+            size={size}
+            style={style}
+            onClick={onClick}
+            variant={variant}
+            {...rest}
         >
-            {/* <div style={s.wrap("IBM")} > */}
-            {renderChildren()}
-            {/* </div> */}
-
-        </button>
+            {children}
+        </ButtonStyled>
     )
 }
 
 Button.propTypes = {
-    label: PropTypes.oneOfType([
+    active: PropTypes.bool,
+    backgroundColor: PropTypes.string,
+    children: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.number
-    ]),
+        PropTypes.number,
+        PropTypes.node
+      ]),
+    color: PropTypes.string,
+    disabled: PropTypes.bool,
+    disabledBackground: PropTypes.string,
+    disabledColor: PropTypes.string,
+    fullWidth: PropTypes.bool,
+    hover: PropTypes.bool,
+    leftIcon: PropTypes.node,
+     /**
+     * Gets called when the user clicks on the button
+     *
+     */
     onClick: PropTypes.func,
-    children: PropTypes.node,
-    disabled: PropTypes.bool
+    rightIcon: PropTypes.node,
+    shadow: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
+    size: PropTypes.string,
+    style: PropTypes.object,
+    variant: PropTypes.oneOf(['basic', 'download', 'upload'])
 };
 
 Button.defaultProps = {
-    className: "",
-    label: "",
-    size: "",
-    variant: "basic",
+    active: true,
+    backgroundColor: '#2196f3',
+    children: "Click",
+    color: '#FFFFFF',
     disabled: false,
+    disabledBackground: '#e0e0e0',
+    disabledColor: '#9e9e9e',
+    fullWidth: false,
+    hover: true,
+    shadow: 0,
+    onClick: undefined,
+    size: 'medium',
+    style: {},
+    variant: 'basic'
 };
 
 export default Button
