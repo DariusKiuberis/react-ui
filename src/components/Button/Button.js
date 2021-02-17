@@ -1,46 +1,61 @@
 import React from 'react'
 import PropTypes from "prop-types";
-import { random, type} from '@darius-kiuberis/helper'
+import { random, type } from '@darius-kiuberis/helper'
 import handleButtonClick from './logic/handleButtonClick'
 import renderChildren from './logic/renderChildren';
 import log from '../../utils/helpers/console.log';
-import {colors} from '../../stylesheets/styles/colors'
+import { colors } from '../../stylesheets/styles/colors'
 import { ButtonStyled } from './styles'
 
-//@note  StoryShot works with Jest
+// a b c d e f g h i j k l m n o p q r s t u v w x y z
+
+const { grey, white } = colors
 
 /**
  * Button component
  *
- * @param {*} { children, backgroundColor, color, disabled, fullWidth, size, onHover, variant, onClick, style, ...rest }
- *
+ * @param {boolean} active Clicking on button background changes or not
+ * @param {string} backgroundColor Background color for button
+ * @param {string | number | node} children Children passed to button
+ * @param {boolean} shadow Shadow box arround button
  * @param {node} leftIcon Element placed before the children.
  * @param {node} rightIcon Element placed after the children.
+ *
  * @return {node}
  */
-const Button = ({ children, backgroundColor, color, disabled, fullWidth,
-     size, onHover, variant, shadow, leftIcon, rightIcon, onClick, style, ...rest }) => {
+const Button = ({ active, backgroundColor, children, color, disabled, disabledBackground,
+    disabledColor, fullWidth, hover, leftIcon, onClick, rightIcon,
+    shadow, size, style, variant, ...rest }) => {
 
-    //  log(" Button.js -> ",
+    // log(" Button.js -> ",
     //     // "children : ", children,
     //     // "backgroundColor : ", backgroundColor,
     //     // "color : " , color ,
     //     // "disabled : ", disabled,
     //     // "size : ", size,
-    //     // "onHover : " , onHover ,
+    //     // "hover : " , hover ,
     //     // "variant : " , variant ,
     //     // "onClick :", onClick,
     //     // "style : ", style,
     //     // "rest : ", rest
-    //     );
+    // );
 
     return (
         <ButtonStyled
-            {...rest}
+            active={active}
+            backgroundColor={backgroundColor}
+            color={color}
+            disabled={disabled}
+            disabledBackground={disabledBackground}
+            disabledColor={disabledColor}
+            fullWidth={fullWidth}
+            hover={hover}
+            shadow={shadow}
+            size={size}
             style={style}
-            variant={variant}
             onClick={onClick}
-            disabled={disabled ? disabled : false}
+            variant={variant}
+            {...rest}
         >
             {children}
         </ButtonStyled>
@@ -48,33 +63,47 @@ const Button = ({ children, backgroundColor, color, disabled, fullWidth,
 }
 
 Button.propTypes = {
-    children: PropTypes.node,
+    active: PropTypes.bool,
     backgroundColor: PropTypes.string,
-    color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+    children: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.node
+      ]),
+    color: PropTypes.string,
     disabled: PropTypes.bool,
+    disabledBackground: PropTypes.string,
+    disabledColor: PropTypes.string,
     fullWidth: PropTypes.bool,
-    size: PropTypes.oneOf(['small', 'medium', 'large']),
-    onHover: PropTypes.bool,
-    variant: PropTypes.oneOf(['basic', 'download', 'upload']),
-    shadow: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
+    hover: PropTypes.bool,
     leftIcon: PropTypes.node,
-    rightIcon: PropTypes.node,
+     /**
+     * Gets called when the user clicks on the button
+     *
+     */
     onClick: PropTypes.func,
-    style: PropTypes.object
+    rightIcon: PropTypes.node,
+    shadow: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
+    size: PropTypes.string,
+    style: PropTypes.object,
+    variant: PropTypes.oneOf(['basic', 'download', 'upload'])
 };
 
 Button.defaultProps = {
+    active: true,
+    backgroundColor: '#2196f3',
     children: "Click",
-    backgroundColor: "white",
-    color: 'default',
+    color: '#FFFFFF',
     disabled: false,
+    disabledBackground: '#e0e0e0',
+    disabledColor: '#9e9e9e',
     fullWidth: false,
-    size: 'medium',
-    onHover: true,
-    variant: 'basic',
+    hover: true,
     shadow: 0,
     onClick: undefined,
-    style: undefined
+    size: 'medium',
+    style: {},
+    variant: 'basic'
 };
 
 export default Button

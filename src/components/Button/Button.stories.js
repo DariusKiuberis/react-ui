@@ -5,20 +5,38 @@ import Button from './Button'
 
 export default {
   title: 'Darius/Button',
-  component: Button
+  component: Button,
 
-  // argTypes: {
-  //   style: {
-  //     description: 'Styling Button',
-  //     table: {
-  //       type: { summary: 'object' },
-  //       defaultValue: { summary: '{}' }
-  //     },
-  //     control: {
-  //       type: 'object'
-  //     }
-  //   }
-  // }
+  parameters: {
+    docs: {
+      description: {
+        component: '<b>Reusable Button component</b> <br/>'
+      }
+    }
+  },
+
+  argTypes: {
+    backgroundColor: {
+      control: {
+        type: 'color'
+      }
+    },
+    color: {
+      control: {
+        type: 'color'
+      }
+    },
+    disabledBackground: {
+      control: {
+        type: 'color'
+      }
+    },
+    disabledColor: {
+      control: {
+        type: 'color'
+      }
+    }
+  }
 }
 
 const Template = (args) => (
@@ -26,16 +44,3 @@ const Template = (args) => (
 )
 
 export const Default = Template.bind({})
-
-// story 1
-// export const Disabled = Template.bind({})
-// Disabled.args = {
-//   label: 'Button1'
-// }
-// Disabled.parameters = {
-//   docs: {
-//     source: {
-//       code: 'Some custom string here'
-//     }
-//   }
-// }
