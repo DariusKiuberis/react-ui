@@ -1,6 +1,6 @@
 {
   "name": "@darius-kiuberis/react-ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React UI components",
   "author": "DariusKiuberis",
   "license": "MIT",
@@ -26,8 +26,8 @@
     "build-storybook": "build-storybook"
   },
   "np": {
-		"test": false
-	},
+    "test": false
+  },
   "peerDependencies": {
     "react": "^16.0.0"
   },
