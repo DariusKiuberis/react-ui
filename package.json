@@ -1,7 +1,8 @@
 {
   "name": "@darius-kiuberis/react-ui",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.1.0",
+  "author": "Darius Kiuberis",
+  "repository": "git://github.com/DariusKiuberis/react-ui.git",
   "main": "./build/index.js",
   "module": "./build/index.es.js",
   "scripts": {
