@@ -13,14 +13,10 @@ npm install --save @darius-kiuberis/react-ui
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
-
 import { Button } from '@darius-kiuberis/react-ui'
 
-class Example extends Component {
-  render() {
-    return <Button text={'Click me'} />
-  }
+const App = () => {
+  return <Button label={'Click me'} />
 }
 ```
 
@@ -40,7 +36,7 @@ Congrats! You just saved yourself hours of work by bootstrapping this project wi
 
 TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
 
-The recommended workflow is to run TSDX in one terminal:
+The recommended workflow is to run TSDX in one terminal :
 
 ```bash
 npm start # or yarn start
