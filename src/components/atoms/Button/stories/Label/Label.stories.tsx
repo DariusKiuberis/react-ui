@@ -1,10 +1,10 @@
+import React from 'react'
 import { Meta } from '@storybook/react'
 import { Button } from '../../Button'
 import { argTypes } from '../argTypes'
-import { Contained, Text } from './variant'
 
 export default {
-  title: 'Components/Atoms/Button/Variants',
+  title: 'Components/Atoms/Button/Label',
   component: Button,
   argTypes,
   parameters: {
@@ -13,4 +13,4 @@ export default {
   },
 } as Meta
 
-export { Contained, Text }
+export const TextNoLabel = (args: any) => <Button {...args} variant={'text'} />

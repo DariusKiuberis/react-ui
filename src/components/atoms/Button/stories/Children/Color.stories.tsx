@@ -1,11 +1,10 @@
 import React from 'react'
 import { Meta } from '@storybook/react'
 import { Button } from '../../Button'
-
 import { argTypes } from '../argTypes'
 
 export default {
-  title: 'Components/Atoms/Button/Type',
+  title: 'Components/Atoms/Button/Children',
   component: Button,
   argTypes,
   parameters: {
@@ -14,6 +13,9 @@ export default {
   },
 } as Meta
 
-export const TypeYes = (args: any) => (
-  <Button {...args} label={'Text'} variant={'text'} />
+export const Children1 = (args: any) => (
+  <Button {...args}>
+    {/* <Settings style={{ backgroundColor: 'red' }} fill="green" height={17} /> */}
+    <div>CHILDREN DIV</div>
+  </Button>
 )
