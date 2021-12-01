@@ -6,7 +6,7 @@ import React, {
   ReactSVGElement,
   CSSProperties,
 } from 'react'
-import Spinner from '../Spinner/Spinner'
+import { DualRing } from '../Spinners'
 import S from './styles'
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -29,6 +29,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
     | 'info'
     | 'warning'
   loading?: boolean
+  loadingIcon?: ReactElement | ReactSVGElement | null
   ripple?: boolean
   type?: 'button' | 'submit' | 'reset'
 }
@@ -49,29 +50,72 @@ export const Button: FC<Props> = ({
   size,
   color,
   loading,
+  loadingIcon,
   ripple,
   type,
 }) => {
-  // temporary
-  outlined = false
-  variant = 'text'
-  size = 'medium'
-  loading = false
-  ripple = true
+  label = variant === 'text' && !label ? 'Default Label' : label
+  const contentHandler = () => {
+    // if (loading) {
+    //   return <DualRing />
+    // }
+    const loadingHandler = () => {
+      if (loading) {
+        if (loadingIcon) {
+          return loadingIcon
+        }
+        return <DualRing />
+      }
+      return
+    }
+
+    const startIconHandler = () => {
+      if (loading) {
+        return null
+      }
+      return startIcon
+    }
+
+    const labelHandler = () => {
+      return label
+    }
+    const childrenHandler = () => {
+      if (loading) {
+        return null
+      }
+      return children
+    }
+
+    const endIconHandler = () => {
+      if (loading) {
+        return null
+      }
+      return endIcon
+    }
+
+    return (
+      <>
+        <S.StartIconWrap>{startIconHandler()}</S.StartIconWrap>
+        <S.LabelWrap>{labelHandler()}</S.LabelWrap>
+        <S.ChildrenWrap>{childrenHandler()}</S.ChildrenWrap>
+        <S.EndIconWrap>{endIconHandler()}</S.EndIconWrap>
+        <S.LoadingWrap>{loadingHandler()}</S.LoadingWrap>
+      </>
+    )
+  }
+
   return (
     <S.Container
       style={style}
       onClick={onClick}
-      color={color}
-      type={type}
-      disabled={disabled}
+      disabled={disabled || loading}
       outlined={outlined}
+      variant={variant}
+      color={color}
+      loading={loading}
+      type={type}
     >
-      {startIcon}
-      {label}
-      {children || null}
-      {endIcon}
-      {<Spinner />}
+      {contentHandler()}
     </S.Container>
   )
 }
@@ -79,13 +123,13 @@ export const Button: FC<Props> = ({
 Button.defaultProps = {
   startIcon: null,
   endIcon: null,
-  label: 'Button',
   disabled: false,
-  outlined: true,
-  variant: 'text',
+  outlined: false,
+  variant: 'contained',
   size: 'medium',
   color: 'primary',
   loading: false,
+  loadingIcon: null,
   ripple: false,
   type: 'button',
 }

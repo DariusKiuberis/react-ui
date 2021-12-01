@@ -12,8 +12,8 @@ const Settings: FC<SvgSyncProps> = (props) => {
   return (
     <svg
       style={{}}
-      width={width || 24}
-      height={height || 24}
+      width={width || 20}
+      height={height || 20}
       viewBox="0 0 36 36"
       version="1.1"
       preserveAspectRatio="xMidYMid meet"

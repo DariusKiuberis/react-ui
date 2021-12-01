@@ -36,7 +36,7 @@ const SSpinner = styled.div<SpinnerProps>`
   margin: 6px;
   border-radius: 50%;
   background: ${(p) => p.color};
-  animation: ${(p) => motion(p)} 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  animation: ${() => motion()} 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 `
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -45,16 +45,16 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   sizeUnit?: string
 }
 
-const Spinner: FC<Props> = ({ color, size, sizeUnit }) => (
+const Circle: FC<Props> = ({ color, size, sizeUnit }) => (
   <Wrapper>
     <SSpinner color={color} size={size} sizeUnit={sizeUnit} />
   </Wrapper>
 )
 
-Spinner.defaultProps = {
+Circle.defaultProps = {
   size: 20,
   color: '#00bfff',
   sizeUnit: 'px',
 }
 
-export default Spinner
+export default Circle
