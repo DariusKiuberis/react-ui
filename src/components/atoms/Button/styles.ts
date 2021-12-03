@@ -1,16 +1,5 @@
 import styled from 'styled-components'
-import {
-  primary,
-  secondary,
-  success,
-  error,
-  info,
-  warning,
-  grey,
-  greyLight,
-  greyDark,
-  white,
-} from '../../../stylesheets/colors'
+import { greyLight, white } from '../../../stylesheets/colors'
 
 interface ContainerProps {
   readonly isActive?: boolean
@@ -19,26 +8,27 @@ interface ContainerProps {
   variant?: string
   color?: string
   loading?: boolean
+  fullWidth?: boolean
+  fullHeight?: boolean
 }
 
 const Container = styled.button<ContainerProps>`
   border: ${(props) => {
     const { disabled, outlined, color, loading } = props
 
-    if (color) {
-      return 'none'
-    }
     if (outlined) {
       if (disabled || loading) {
-        return `solid 1px rgba(0, 0, 0, 0.12)`
+        return `solid 1px red`
       }
-      return `solid 1px rgb(25, 118, 210)`
+      return `solid 1px ${color}`
     }
     return 'none'
   }};
   border-radius: 3px;
   min-height: 20px;
   min-width: 80px;
+  width: ${(props) => (props.fullWidth ? '100%' : null)};
+  height: ${(props) => (props.fullHeight ? '100%' : null)};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,6 +36,14 @@ const Container = styled.button<ContainerProps>`
   pointer-events: ${(props) =>
     props.disabled || props.loading ? 'none' : null};
   padding: 5px;
+  color: ${(props) => {
+    const { variant, color } = props
+    if (variant === 'contained') {
+      return white
+    }
+
+    return color
+  }};
   background-color: ${(props) => {
     const { disabled, outlined, variant, color, loading } = props
     if (variant === 'text') {
@@ -53,27 +51,9 @@ const Container = styled.button<ContainerProps>`
     }
     if (disabled || loading) {
       if (outlined) {
-        return 'white'
+        return white
       }
       return greyLight
-    }
-    if (color === 'primary') {
-      return primary
-    }
-    if (color === 'secondary') {
-      return secondary
-    }
-    if (color === 'success') {
-      return success
-    }
-    if (color === 'error') {
-      return error
-    }
-    if (color === 'info') {
-      return info
-    }
-    if (color === 'warning') {
-      return warning
     }
 
     return color

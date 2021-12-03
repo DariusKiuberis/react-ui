@@ -23,6 +23,13 @@ export const argTypes = {
       default: 'text',
     },
   },
+
+  label: {
+    control: {
+      type: 'text',
+    },
+  },
+
   // size: {
   //   options: ['small', 'medium', 'large'],
   //   control: {

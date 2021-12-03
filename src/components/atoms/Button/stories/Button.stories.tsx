@@ -12,6 +12,8 @@ export default {
         style={
           {
             // border: 'solid 1px red',
+            // width: '300px',
+            // height: 50,
             // margin: '3em',
           }
         }

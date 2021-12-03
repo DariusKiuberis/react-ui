@@ -7,35 +7,51 @@ import React, {
   CSSProperties,
 } from 'react'
 import { DualRing } from '../Spinners'
+import colorHandler from './logic/colorHandler'
 import S from './styles'
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   style?: CSSProperties
   startIcon?: ReactElement | ReactSVGElement | null
   endIcon?: ReactElement | ReactSVGElement | null
-  label?: string
+  label?: string | number
   children?: ReactChild
   onClick?: () => void
   disabled?: boolean
   outlined?: boolean
   variant?: 'text' | 'contained' | 'upload'
   size?: 'small' | 'medium' | 'large'
-  color?:
-    | string
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'error'
-    | 'info'
-    | 'warning'
+  color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
   loading?: boolean
   loadingIcon?: ReactElement | ReactSVGElement | null
   ripple?: boolean
   type?: 'button' | 'submit' | 'reset'
+  fullWidth?: boolean
+  fullHeight?: boolean
 }
 
 /**
- * A Button
+ * A Button. All Params is optional.
+ *
+ * @param style CSSProperties
+ * @param startIcon ReactElement | ReactSVGElement | null
+ * @param endIcon ReactElement | ReactSVGElement | null
+ * @param label string | number
+ * @param children ReactChild
+ * @param onClick () => void
+ * @param disabled boolean
+ * @param outlined boolean
+ * @param variant 'text' | 'contained' | 'upload'
+ * @param size 'small' | 'medium' | 'large'
+ * @param color 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
+ * @param loading boolean
+ * @param loadingIcon ReactElement | ReactSVGElement | null
+ * @param ripple boolean
+ * @param type 'button' | 'submit' | 'reset'
+ * @param fullWidth boolean
+ * @param fullHeight boolean
+ *
+ * @returns  JSX.Element
  */
 export const Button: FC<Props> = ({
   style,
@@ -53,8 +69,10 @@ export const Button: FC<Props> = ({
   loadingIcon,
   ripple,
   type,
+  fullWidth,
+  fullHeight,
 }) => {
-  label = variant === 'text' && !label ? 'Default Label' : label
+  //   label = variant === 'text' && !label ? 'Default Label' : label
   const contentHandler = () => {
     // if (loading) {
     //   return <DualRing />
@@ -111,9 +129,11 @@ export const Button: FC<Props> = ({
       disabled={disabled || loading}
       outlined={outlined}
       variant={variant}
-      color={color}
+      color={colorHandler(color)}
       loading={loading}
       type={type}
+      fullWidth={fullWidth}
+      fullHeight={fullHeight}
     >
       {contentHandler()}
     </S.Container>
@@ -121,15 +141,18 @@ export const Button: FC<Props> = ({
 }
 
 Button.defaultProps = {
+  label: 'Submit',
   startIcon: null,
   endIcon: null,
   disabled: false,
-  outlined: false,
-  variant: 'contained',
+  outlined: true,
+  variant: 'text',
   size: 'medium',
   color: 'primary',
   loading: false,
   loadingIcon: null,
   ripple: false,
   type: 'button',
+  fullWidth: false,
+  fullHeight: false,
 }
