@@ -1,11 +1,12 @@
 import styled from 'styled-components'
-import { greyLight, white } from '../../../stylesheets/colors'
+import { greyLight, greyDark, white } from '../../../stylesheets/colors'
 
 interface ContainerProps {
   readonly isActive?: boolean
   disabled?: boolean
   outlined?: boolean
   variant?: string
+  size?: string
   color?: string
   loading?: boolean
   fullWidth?: boolean
@@ -13,22 +14,53 @@ interface ContainerProps {
 }
 
 const Container = styled.button<ContainerProps>`
-  border: ${(props) => {
-    const { disabled, outlined, color, loading } = props
-
+  border: ${({ disabled, outlined, variant, color, loading }) => {
     if (outlined) {
       if (disabled || loading) {
-        return `solid 1px red`
+        if (variant === 'contained') {
+          return 'none'
+        }
+        return `solid 1px ${greyLight}`
       }
       return `solid 1px ${color}`
     }
     return 'none'
   }};
   border-radius: 3px;
-  min-height: 20px;
-  min-width: 80px;
-  width: ${(props) => (props.fullWidth ? '100%' : null)};
-  height: ${(props) => (props.fullHeight ? '100%' : null)};
+  min-width: ${({ size }) => {
+    if (size === 'small') {
+      return '50px'
+    }
+    if (size === 'medium') {
+      return '70px'
+    }
+    if (size === 'large') {
+      return '100px'
+    }
+    if (size === '100%') {
+      return '100%'
+    }
+    return '70px'
+  }};
+  min-height: ${({ size }) => {
+    if (size === 'small') {
+      return '15px'
+    }
+    if (size === 'medium') {
+      return '20px'
+    }
+    if (size === 'large') {
+      return '25px'
+    }
+
+    if (size === '100%') {
+      return '100%'
+    }
+    return '20px'
+  }};
+  /* min-width: 80px; */
+  /* width: ${(fullWidth) => (fullWidth ? '100%' : null)}; */
+  /* height: ${(fullHeight) => (fullHeight ? '100%' : null)}; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,16 +68,23 @@ const Container = styled.button<ContainerProps>`
   pointer-events: ${(props) =>
     props.disabled || props.loading ? 'none' : null};
   padding: 5px;
-  color: ${(props) => {
-    const { variant, color } = props
+  color: ${({ disabled, loading, variant, color }) => {
+    console.log('---> color', color)
+
+    if (disabled || loading) {
+      if (variant === 'text') {
+        return greyLight
+      }
+      return greyDark
+    }
+
     if (variant === 'contained') {
       return white
     }
 
     return color
   }};
-  background-color: ${(props) => {
-    const { disabled, outlined, variant, color, loading } = props
+  background-color: ${({ disabled, outlined, variant, color, loading }) => {
     if (variant === 'text') {
       return white
     }

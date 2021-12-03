@@ -20,8 +20,15 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   disabled?: boolean
   outlined?: boolean
   variant?: 'text' | 'contained' | 'upload'
-  size?: 'small' | 'medium' | 'large'
-  color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning'
+  size?: 'small' | 'medium' | 'large' | '100%'
+  color?:
+    | string
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning'
   loading?: boolean
   loadingIcon?: ReactElement | ReactSVGElement | null
   ripple?: boolean
@@ -95,6 +102,9 @@ export const Button: FC<Props> = ({
     }
 
     const labelHandler = () => {
+      if (!label) {
+        return null
+      }
       return label
     }
     const childrenHandler = () => {
@@ -122,12 +132,19 @@ export const Button: FC<Props> = ({
     )
   }
 
+  const outlinedHandler = () => {
+    if (variant === 'contained') {
+      return false
+    }
+    return true
+  }
   return (
     <S.Container
       style={style}
       onClick={onClick}
       disabled={disabled || loading}
-      outlined={outlined}
+      outlined={outlinedHandler()}
+      size={size}
       variant={variant}
       color={colorHandler(color)}
       loading={loading}
@@ -141,7 +158,7 @@ export const Button: FC<Props> = ({
 }
 
 Button.defaultProps = {
-  label: 'Submit',
+  label: 'OK',
   startIcon: null,
   endIcon: null,
   disabled: false,
