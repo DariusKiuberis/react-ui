@@ -1,8 +1,10 @@
+import React from 'react'
 import styled from 'styled-components'
 import { greyLight, greyDark, white } from '../../../stylesheets/colors'
 
 interface ContainerProps {
   readonly isActive?: boolean
+  isChildrenExists?: boolean
   disabled?: boolean
   outlined?: boolean
   variant?: string
@@ -14,7 +16,18 @@ interface ContainerProps {
 }
 
 const Container = styled.button<ContainerProps>`
-  border: ${({ disabled, outlined, variant, color, loading }) => {
+  border: ${({
+    isChildrenExists,
+    children,
+    disabled,
+    outlined,
+    variant,
+    color,
+    loading,
+  }) => {
+    if (isChildrenExists) {
+      return 'none'
+    }
     if (outlined) {
       if (disabled || loading) {
         if (variant === 'contained') {
@@ -58,9 +71,8 @@ const Container = styled.button<ContainerProps>`
     }
     return '20px'
   }};
-  /* min-width: 80px; */
-  /* width: ${(fullWidth) => (fullWidth ? '100%' : null)}; */
-  /* height: ${(fullHeight) => (fullHeight ? '100%' : null)}; */
+  width: ${(fullWidth) => (fullWidth ? '100%' : null)};
+  height: ${(fullHeight) => (fullHeight ? '100%' : null)};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,9 +80,10 @@ const Container = styled.button<ContainerProps>`
   pointer-events: ${(props) =>
     props.disabled || props.loading ? 'none' : null};
   padding: 5px;
-  color: ${({ disabled, loading, variant, color }) => {
-    console.log('---> color', color)
-
+  color: ${({ isChildrenExists, disabled, loading, variant, color }) => {
+    if (isChildrenExists) {
+      return 'none'
+    }
     if (disabled || loading) {
       if (variant === 'text') {
         return greyLight
@@ -84,7 +97,17 @@ const Container = styled.button<ContainerProps>`
 
     return color
   }};
-  background-color: ${({ disabled, outlined, variant, color, loading }) => {
+  background-color: ${({
+    isChildrenExists,
+    disabled,
+    outlined,
+    variant,
+    color,
+    loading,
+  }) => {
+    if (isChildrenExists) {
+      return 'transparent'
+    }
     if (variant === 'text') {
       return white
     }
@@ -105,6 +128,7 @@ const Container = styled.button<ContainerProps>`
 
 const StartIconWrap = styled.div`
   /* border: solid 1px blue; */
+  margin: 0 5px 0 0;
   display: flex;
 `
 
@@ -120,15 +144,20 @@ const ChildrenWrap = styled.div`
 
 const EndIconWrap = styled.div`
   /* border: solid 1px red; */
+  margin: 0 0 0 5px;
   display: flex;
 `
 
 const LoadingWrap = styled.div`
-  /* border: solid 1px aqua; */
-  /* width: 20px; */
-  /* height: 20px;  */
+  /* border: solid 1px red; */
   display: flex;
   white-space: nowrap;
+  margin: ${({ loading }) => {
+    if (!loading) {
+      return '0px'
+    }
+    return '0 0 0 5px'
+  }};
 `
 
 const S = {

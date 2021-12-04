@@ -23,7 +23,19 @@ export const All = (args: any) => (
     label="Click Me!"
     endIcon={<Settings fill={'tomato'} />}
   >
-    <div>CHILDREN ALL</div>
+    <div>CHILDREN</div>
+  </Button>
+)
+
+export const AllWithLoading = (args: any) => (
+  <Button
+    {...args}
+    startIcon={<Settings fill={'tomato'} />}
+    label="Click!"
+    endIcon={<Settings fill={'tomato'} />}
+    loading
+  >
+    <div>CHILDREN</div>
   </Button>
 )
 

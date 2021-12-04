@@ -15,7 +15,16 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   startIcon?: ReactElement | ReactSVGElement | null
   endIcon?: ReactElement | ReactSVGElement | null
   label?: string | number
-  children?: ReactChild
+  children?:
+    | (React.ReactChild &
+        (
+          | boolean
+          | React.ReactChild
+          | React.ReactFragment
+          | React.ReactPortal
+          | null
+        ))
+    | undefined
   onClick?: () => void
   disabled?: boolean
   outlined?: boolean
@@ -108,9 +117,6 @@ export const Button: FC<Props> = ({
       return label
     }
     const childrenHandler = () => {
-      if (loading) {
-        return null
-      }
       return children
     }
 
@@ -123,11 +129,17 @@ export const Button: FC<Props> = ({
 
     return (
       <>
-        <S.StartIconWrap>{startIconHandler()}</S.StartIconWrap>
-        <S.LabelWrap>{labelHandler()}</S.LabelWrap>
-        <S.ChildrenWrap>{childrenHandler()}</S.ChildrenWrap>
-        <S.EndIconWrap>{endIconHandler()}</S.EndIconWrap>
-        <S.LoadingWrap>{loadingHandler()}</S.LoadingWrap>
+        {!children ? (
+          <>
+            <S.StartIconWrap>{startIconHandler()}</S.StartIconWrap>
+            <S.LabelWrap>{labelHandler()}</S.LabelWrap>
+            <S.ChildrenWrap>{childrenHandler()}</S.ChildrenWrap>
+            <S.EndIconWrap>{endIconHandler()}</S.EndIconWrap>
+            <S.LoadingWrap>{loadingHandler()}</S.LoadingWrap>
+          </>
+        ) : (
+          children
+        )}
       </>
     )
   }
@@ -138,9 +150,16 @@ export const Button: FC<Props> = ({
     }
     return true
   }
+  //@todo fix children when is loading(should be spinner)
+  function isChildrenExists() {
+    if (!React.Children.count(children)) return false
+    return true
+  }
+
   return (
     <S.Container
       style={style}
+      isChildrenExists={isChildrenExists()}
       onClick={onClick}
       disabled={disabled || loading}
       outlined={outlinedHandler()}
