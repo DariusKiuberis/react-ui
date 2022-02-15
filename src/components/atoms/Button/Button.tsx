@@ -1,7 +1,7 @@
 import React, {
   FC,
   HTMLAttributes,
-  ReactChild,
+  // ReactChild,
   ReactElement,
   ReactSVGElement,
   CSSProperties,
@@ -83,7 +83,7 @@ export const Button: FC<Props> = ({
   color,
   loading,
   loadingIcon,
-  ripple,
+  // ripple,
   type,
   fullWidth,
   fullHeight,
@@ -145,13 +145,13 @@ export const Button: FC<Props> = ({
   }
 
   const outlinedHandler = () => {
-    if (variant === 'contained') {
+    if (variant === 'contained' || !outlined) {
       return false
     }
     return true
   }
-  //@todo fix children when is loading(should be spinner)
-  function isChildrenExists() {
+  //@fix children when is loading(should be spinner)
+  const isChildrenExists = () => {
     if (!React.Children.count(children)) return false
     return true
   }

@@ -14,7 +14,7 @@ export default {
   },
 } as Meta
 
-export const Disabled1 = (args: any) => (
+export const DisabledWithLabelAndTwoIcons = (args: any) => (
   <Button
     {...args}
     disabled

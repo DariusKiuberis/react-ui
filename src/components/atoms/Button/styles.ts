@@ -1,6 +1,5 @@
-import React from 'react'
 import styled from 'styled-components'
-import { greyLight, greyDark, white } from '../../../stylesheets/colors'
+import { white } from '../../../stylesheets/colors'
 
 interface ContainerProps {
   readonly isActive?: boolean
@@ -15,26 +14,16 @@ interface ContainerProps {
   fullHeight?: boolean
 }
 
+interface LoadingWrapProps {
+  loading?: boolean
+}
+
 const Container = styled.button<ContainerProps>`
-  border: ${({
-    isChildrenExists,
-    children,
-    disabled,
-    outlined,
-    variant,
-    color,
-    loading,
-  }) => {
-    if (isChildrenExists) {
-      return 'none'
-    }
+  border: ${({ outlined, color }) => {
+    // if (isChildrenExists) {
+    //   return 'none'
+    // }
     if (outlined) {
-      if (disabled || loading) {
-        if (variant === 'contained') {
-          return 'none'
-        }
-        return `solid 1px ${greyLight}`
-      }
       return `solid 1px ${color}`
     }
     return 'none'
@@ -80,15 +69,9 @@ const Container = styled.button<ContainerProps>`
   pointer-events: ${(props) =>
     props.disabled || props.loading ? 'none' : null};
   padding: 5px;
-  color: ${({ isChildrenExists, disabled, loading, variant, color }) => {
+  color: ${({ isChildrenExists, variant, color }) => {
     if (isChildrenExists) {
       return 'none'
-    }
-    if (disabled || loading) {
-      if (variant === 'text') {
-        return greyLight
-      }
-      return greyDark
     }
 
     if (variant === 'contained') {
@@ -97,28 +80,17 @@ const Container = styled.button<ContainerProps>`
 
     return color
   }};
-  background-color: ${({
-    isChildrenExists,
-    disabled,
-    outlined,
-    variant,
-    color,
-    loading,
-  }) => {
-    if (isChildrenExists) {
-      return 'transparent'
-    }
+  background-color: ${({ variant, color }) => {
     if (variant === 'text') {
       return white
     }
-    if (disabled || loading) {
-      if (outlined) {
-        return white
-      }
-      return greyLight
-    }
-
     return color
+  }};
+  opacity: ${({ disabled, loading }) => {
+    if (disabled || loading) {
+      return 0.4
+    }
+    return 1
   }};
 
   :hover {
@@ -148,7 +120,7 @@ const EndIconWrap = styled.div`
   display: flex;
 `
 
-const LoadingWrap = styled.div`
+const LoadingWrap = styled.div<LoadingWrapProps>`
   /* border: solid 1px red; */
   display: flex;
   white-space: nowrap;
