@@ -117,6 +117,9 @@ export const Button: FC<Props> = ({
       return label
     }
     const childrenHandler = () => {
+      if (loading) {
+        return null
+      }
       return children
     }
 
@@ -129,17 +132,11 @@ export const Button: FC<Props> = ({
 
     return (
       <>
-        {!children ? (
-          <>
-            <S.StartIconWrap>{startIconHandler()}</S.StartIconWrap>
-            <S.LabelWrap>{labelHandler()}</S.LabelWrap>
-            <S.ChildrenWrap>{childrenHandler()}</S.ChildrenWrap>
-            <S.EndIconWrap>{endIconHandler()}</S.EndIconWrap>
-            <S.LoadingWrap>{loadingHandler()}</S.LoadingWrap>
-          </>
-        ) : (
-          children
-        )}
+        <S.StartIconWrap>{startIconHandler()}</S.StartIconWrap>
+        <S.LabelWrap>{labelHandler()}</S.LabelWrap>
+        <S.ChildrenWrap>{childrenHandler()}</S.ChildrenWrap>
+        <S.EndIconWrap>{endIconHandler()}</S.EndIconWrap>
+        <S.LoadingWrap>{loadingHandler()}</S.LoadingWrap>
       </>
     )
   }
@@ -150,7 +147,7 @@ export const Button: FC<Props> = ({
     }
     return true
   }
-  //@fix children when is loading(should be spinner)
+
   const isChildrenExists = () => {
     if (!React.Children.count(children)) return false
     return true
@@ -177,7 +174,7 @@ export const Button: FC<Props> = ({
 }
 
 Button.defaultProps = {
-  label: 'OK',
+  label: '',
   startIcon: null,
   endIcon: null,
   disabled: false,
