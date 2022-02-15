@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react'
 import styled, { keyframes } from 'styled-components'
 
-interface DualRingProps {
+interface DualRingSpinnerProps {
   color?: string
   size?: string | number
   sizeUnit?: string
@@ -18,7 +18,7 @@ const motion = () => keyframes`
   }
 `
 
-const DualRingSpinner = styled.div<DualRingProps>`
+const DualRingSpinner = styled.div<DualRingSpinnerProps>`
   /* border: solid 1px red; */
   display: inline-block;
   width: ${(p) => `${p.width}${p.sizeUnit}`};
@@ -36,7 +36,7 @@ const DualRingSpinner = styled.div<DualRingProps>`
   }
 `
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
+interface DualRingProps extends HTMLAttributes<HTMLDivElement> {
   color?: string
   size?: string | number
   sizeUnit?: string
@@ -44,7 +44,13 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   height?: string | number
 }
 
-const DualRing: FC<Props> = ({ color, size, sizeUnit, width, height }) => (
+const DualRing: FC<DualRingProps> = ({
+  color,
+  size,
+  sizeUnit,
+  width,
+  height,
+}) => (
   <DualRingSpinner
     color={color}
     size={size}

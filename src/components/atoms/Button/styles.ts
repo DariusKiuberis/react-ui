@@ -121,15 +121,10 @@ const EndIconWrap = styled.div`
 `
 
 const LoadingWrap = styled.div<LoadingWrapProps>`
-  /* border: solid 1px red; */
+  border: solid 1px red;
   display: flex;
-  white-space: nowrap;
-  margin: ${({ loading }) => {
-    if (!loading) {
-      return '0px'
-    }
-    return '0 0 0 5px'
-  }};
+  justify-content: center;
+  align-items: center;
 `
 
 const S = {

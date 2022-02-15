@@ -104,9 +104,9 @@ export const Button: FC<Props> = ({
     }
 
     const startIconHandler = () => {
-      if (loading) {
-        return null
-      }
+      // if (loading) {
+      //   return null
+      // }
       return startIcon
     }
 
@@ -117,16 +117,16 @@ export const Button: FC<Props> = ({
       return label
     }
     const childrenHandler = () => {
-      if (loading) {
-        return null
-      }
+      // if (loading) {
+      //   return null
+      // }
       return children
     }
 
     const endIconHandler = () => {
-      if (loading) {
-        return null
-      }
+      // if (loading) {
+      //   return null
+      // }
       return endIcon
     }
 
