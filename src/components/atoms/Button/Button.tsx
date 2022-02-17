@@ -88,6 +88,11 @@ export const Button: FC<Props> = ({
   fullWidth,
   fullHeight,
 }) => {
+  const isChildrenExists = () => {
+    if (!React.Children.count(children)) return false
+    return true
+  }
+
   const contentHandler = () => {
     const startIconHandler = () => {
       return startIcon
@@ -111,7 +116,9 @@ export const Button: FC<Props> = ({
       <>
         <S.StartIconWrap>{startIconHandler()}</S.StartIconWrap>
         <S.LabelWrap>{labelHandler()}</S.LabelWrap>
-        <S.ChildrenWrap>{childrenHandler()}</S.ChildrenWrap>
+        <S.ChildrenWrap isChildrenExists={isChildrenExists()}>
+          {childrenHandler()}
+        </S.ChildrenWrap>
         <S.EndIconWrap>{endIconHandler()}</S.EndIconWrap>
       </>
     )
@@ -130,11 +137,6 @@ export const Button: FC<Props> = ({
     if (variant === 'contained' || !outlined) {
       return false
     }
-    return true
-  }
-
-  const isChildrenExists = () => {
-    if (!React.Children.count(children)) return false
     return true
   }
 
@@ -187,5 +189,6 @@ Button.defaultProps = {
 
 //@todo make label color changeble
 //@todo when clicking button do ripple  optionaly working
+//@todo if icon , label and children exist then no gaps atm, need margins
 
 //@note what is the diff between contained and upload?..

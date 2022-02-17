@@ -1,11 +1,5 @@
 import styled from 'styled-components'
-import {
-  primary,
-  secondary,
-  black,
-  greyLight,
-  white,
-} from '../../../stylesheets/colors'
+import { black, greyLight, white } from '../../../stylesheets/colors'
 
 interface ContainerProps {
   readonly isActive?: boolean
@@ -30,6 +24,11 @@ interface ContentProps {
 interface LoadingProps {
   disabled?: boolean
   loading?: boolean
+}
+
+interface ChildrenWrapProps {
+  color?: string
+  isChildrenExists?: boolean
 }
 
 const Container = styled.button<ContainerProps>`
@@ -151,9 +150,16 @@ const LabelWrap = styled.div`
   white-space: nowrap;
 `
 
-const ChildrenWrap = styled.div`
+const ChildrenWrap = styled.div<ChildrenWrapProps>`
   /* border: solid 1px purple; */
   white-space: nowrap;
+  color: ${({ isChildrenExists, color }) => {
+    if (isChildrenExists) {
+      return null
+    }
+
+    return color
+  }};
 `
 
 const EndIconWrap = styled.div`
