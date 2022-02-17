@@ -14,7 +14,13 @@ interface ContainerProps {
   fullHeight?: boolean
 }
 
-interface LoadingWrapProps {
+interface ContentProps {
+  disabled?: boolean
+  loading?: boolean
+}
+
+interface LoadingProps {
+  disabled?: boolean
   loading?: boolean
 }
 
@@ -28,6 +34,7 @@ const Container = styled.button<ContainerProps>`
     }
     return 'none'
   }};
+
   border-radius: 3px;
   min-width: ${({ size }) => {
     if (size === 'small') {
@@ -66,8 +73,8 @@ const Container = styled.button<ContainerProps>`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  pointer-events: ${(props) =>
-    props.disabled || props.loading ? 'none' : null};
+  pointer-events: ${({ disabled, loading }) =>
+    disabled || loading ? 'none' : null};
   padding: 5px;
   color: ${({ isChildrenExists, variant, color }) => {
     if (isChildrenExists) {
@@ -86,16 +93,27 @@ const Container = styled.button<ContainerProps>`
     }
     return color
   }};
+
+  :hover {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+  }
+`
+
+const Content = styled.div<ContentProps>`
+  /* border: solid 1px red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: ${({ disabled, loading }) => {
     if (disabled || loading) {
       return 0.4
     }
     return 1
   }};
+`
 
-  :hover {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
-  }
+const Loading = styled.div<LoadingProps>`
+  /* border: solid 1px green; */
 `
 
 const StartIconWrap = styled.div`
@@ -120,8 +138,8 @@ const EndIconWrap = styled.div`
   display: flex;
 `
 
-const LoadingWrap = styled.div<LoadingWrapProps>`
-  border: solid 1px red;
+const LoadingWrap = styled.div`
+  /* border: solid 1px red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -129,6 +147,8 @@ const LoadingWrap = styled.div<LoadingWrapProps>`
 
 const S = {
   Container,
+  Content,
+  Loading,
   StartIconWrap,
   LabelWrap,
   ChildrenWrap,

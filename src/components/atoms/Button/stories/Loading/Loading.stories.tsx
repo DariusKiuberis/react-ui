@@ -18,7 +18,7 @@ export default {
 export const LoadingAll = (args: any) => (
   <Button
     {...args}
-    loading
+    loading={true}
     // loadingIcon={<div>custom loading icon</div>}
     startIcon={<Settings fill={'tomato'} />}
     label="Click Me!"

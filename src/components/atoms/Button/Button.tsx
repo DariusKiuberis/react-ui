@@ -88,25 +88,8 @@ export const Button: FC<Props> = ({
   fullWidth,
   fullHeight,
 }) => {
-  //   label = variant === 'text' && !label ? 'Default Label' : label
   const contentHandler = () => {
-    // if (loading) {
-    //   return <DualRing />
-    // }
-    const loadingHandler = () => {
-      if (loading) {
-        if (loadingIcon) {
-          return loadingIcon
-        }
-        return <DualRing />
-      }
-      return
-    }
-
     const startIconHandler = () => {
-      // if (loading) {
-      //   return null
-      // }
       return startIcon
     }
 
@@ -117,16 +100,10 @@ export const Button: FC<Props> = ({
       return label
     }
     const childrenHandler = () => {
-      // if (loading) {
-      //   return null
-      // }
       return children
     }
 
     const endIconHandler = () => {
-      // if (loading) {
-      //   return null
-      // }
       return endIcon
     }
 
@@ -136,9 +113,17 @@ export const Button: FC<Props> = ({
         <S.LabelWrap>{labelHandler()}</S.LabelWrap>
         <S.ChildrenWrap>{childrenHandler()}</S.ChildrenWrap>
         <S.EndIconWrap>{endIconHandler()}</S.EndIconWrap>
-        <S.LoadingWrap>{loadingHandler()}</S.LoadingWrap>
       </>
     )
+  }
+  const loadingHandler = () => {
+    if (loading) {
+      if (loadingIcon) {
+        return loadingIcon
+      }
+      return <DualRing />
+    }
+    return
   }
 
   const outlinedHandler = () => {
@@ -168,7 +153,11 @@ export const Button: FC<Props> = ({
       fullWidth={fullWidth}
       fullHeight={fullHeight}
     >
-      {contentHandler()}
+      <S.Content>{contentHandler()}</S.Content>
+
+      <S.Loading>
+        <S.LoadingWrap>{loadingHandler()}</S.LoadingWrap>
+      </S.Loading>
     </S.Container>
   )
 }
