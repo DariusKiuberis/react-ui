@@ -14,4 +14,14 @@ export default {
   },
 } as Meta
 
-export const CustomColor = (args: any) => <Button {...args} color={'tomato'} />
+export const ColorWithVariantText = (args: any) => (
+  <Button {...args} color={'tomato'} />
+)
+
+export const ColorWithVariantContained = (args: any) => (
+  <Button {...args} variant={'contained'} color={'tomato'} />
+)
+
+export const ColorWithVariantUpload = (args: any) => (
+  <Button {...args} variant={'upload'} color={'tomato'} />
+)

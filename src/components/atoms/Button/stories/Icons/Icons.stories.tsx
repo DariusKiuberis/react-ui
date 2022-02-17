@@ -20,26 +20,22 @@ export const All = (args: any) => (
   <Button
     {...args}
     startIcon={<Settings fill={'tomato'} />}
-    label="Click Me!"
+    label="Label"
     endIcon={<Settings fill={'tomato'} />}
   >
     <div>CHILDREN</div>
   </Button>
 )
 
-export const AllWithLoading = (args: any) => (
-  <Button
-    {...args}
-    startIcon={<Settings fill={'tomato'} />}
-    label="Click!"
-    endIcon={<Settings fill={'tomato'} />}
-    loading
-  >
-    <div>CHILDREN</div>
-  </Button>
+export const StartIcon = (args: any) => (
+  <Button {...args} startIcon={<Settings fill={'tomato'} />} />
 )
 
-export const Icons = (args: any) => (
+export const EndIcon = (args: any) => (
+  <Button {...args} endIcon={<Settings fill={'tomato'} />} />
+)
+
+export const TwoIcons = (args: any) => (
   <Button
     {...args}
     startIcon={<Settings fill={'tomato'} />}
@@ -47,12 +43,49 @@ export const Icons = (args: any) => (
   />
 )
 
-export const IconsAndChildren = (args: any) => (
+export const IconsWithLabel = (args: any) => (
+  <Button
+    {...args}
+    startIcon={<Settings fill={'tomato'} />}
+    label="Click Me!"
+    endIcon={<Settings fill={'tomato'} />}
+  ></Button>
+)
+
+export const IconsWithChildren = (args: any) => (
   <Button
     {...args}
     startIcon={<Settings fill={'tomato'} />}
     endIcon={<Settings fill={'tomato'} />}
   >
+    <div>CHILDREN</div>
+  </Button>
+)
+
+export const StartIconWithLabel = (args: any) => (
+  <Button
+    {...args}
+    startIcon={<Settings fill={'tomato'} />}
+    label="Click Me!"
+  ></Button>
+)
+
+export const EndIconWithLabel = (args: any) => (
+  <Button
+    {...args}
+    label="Click Me!"
+    endIcon={<Settings fill={'tomato'} />}
+  ></Button>
+)
+
+export const StartIconWithChildren = (args: any) => (
+  <Button {...args} startIcon={<Settings fill={'tomato'} />}>
+    <div>CHILDREN</div>
+  </Button>
+)
+
+export const EndIconWithChildren = (args: any) => (
+  <Button {...args} endIcon={<Settings fill={'tomato'} />}>
     <div>CHILDREN</div>
   </Button>
 )

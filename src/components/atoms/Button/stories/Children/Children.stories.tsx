@@ -15,7 +15,6 @@ export default {
 
 export const ChildrenWithOneElement = (args: any) => (
   <Button {...args}>
-    {/* <Settings style={{ backgroundColor: 'red' }} fill="green" height={17} /> */}
     <div
       style={{
         border: 'solid red 1px',

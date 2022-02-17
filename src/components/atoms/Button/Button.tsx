@@ -141,11 +141,9 @@ export const Button: FC<Props> = ({
   return (
     <S.Container
       style={style}
-      isChildrenExists={isChildrenExists()}
       onClick={onClick}
-      disabled={disabled || loading}
       outlined={outlinedHandler()}
-      size={size}
+      disabled={disabled || loading}
       variant={variant}
       color={colorHandler(color)}
       loading={loading}
@@ -153,7 +151,14 @@ export const Button: FC<Props> = ({
       fullWidth={fullWidth}
       fullHeight={fullHeight}
     >
-      <S.Content>{contentHandler()}</S.Content>
+      <S.Content
+        isChildrenExists={isChildrenExists()}
+        disabled={disabled || loading}
+        loading={loading}
+        size={size}
+      >
+        {contentHandler()}
+      </S.Content>
 
       <S.Loading>
         <S.LoadingWrap>{loadingHandler()}</S.LoadingWrap>
@@ -178,3 +183,6 @@ Button.defaultProps = {
   fullWidth: false,
   fullHeight: false,
 }
+
+//@todo when disabled or loading dim border color
+//@todo when clicking button do ripple  optionaly working

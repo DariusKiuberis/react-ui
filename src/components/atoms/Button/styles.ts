@@ -3,11 +3,9 @@ import { white } from '../../../stylesheets/colors'
 
 interface ContainerProps {
   readonly isActive?: boolean
-  isChildrenExists?: boolean
   disabled?: boolean
   outlined?: boolean
   variant?: string
-  size?: string
   color?: string
   loading?: boolean
   fullWidth?: boolean
@@ -15,7 +13,10 @@ interface ContainerProps {
 }
 
 interface ContentProps {
+  isChildrenExists?: boolean
   disabled?: boolean
+  variant?: string
+  size?: string
   loading?: boolean
 }
 
@@ -26,9 +27,6 @@ interface LoadingProps {
 
 const Container = styled.button<ContainerProps>`
   border: ${({ outlined, color }) => {
-    // if (isChildrenExists) {
-    //   return 'none'
-    // }
     if (outlined) {
       return `solid 1px ${color}`
     }
@@ -36,6 +34,45 @@ const Container = styled.button<ContainerProps>`
   }};
 
   border-radius: 3px;
+
+  /* width: ${(fullWidth) => (fullWidth ? '100%' : null)}; */
+  /* height: ${(fullHeight) => (fullHeight ? '100%' : null)}; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: ${({ disabled, loading }) => {
+    if (disabled || loading) {
+      return 'not-allowed'
+    }
+
+    return 'pointer'
+  }};
+  pointer-events: ${({ disabled, loading }) =>
+    disabled || loading ? 'none' : 'auto'};
+  padding: 5px;
+
+  background-color: ${({ variant, color }) => {
+    if (variant === 'text') {
+      return white
+    }
+    return color
+  }};
+
+  :hover {
+    box-shadow: ${({ disabled, loading }) => {
+      if (disabled || loading) {
+        return 'none'
+      }
+      return '0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);'
+    }};
+  }
+`
+
+const Content = styled.div<ContentProps>`
+  /* border: solid 1px red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: ${({ size }) => {
     if (size === 'small') {
       return '50px'
@@ -46,10 +83,8 @@ const Container = styled.button<ContainerProps>`
     if (size === 'large') {
       return '100px'
     }
-    if (size === '100%') {
-      return '100%'
-    }
-    return '70px'
+
+    return size
   }};
   min-height: ${({ size }) => {
     if (size === 'small') {
@@ -67,15 +102,6 @@ const Container = styled.button<ContainerProps>`
     }
     return '20px'
   }};
-  width: ${(fullWidth) => (fullWidth ? '100%' : null)};
-  height: ${(fullHeight) => (fullHeight ? '100%' : null)};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  pointer-events: ${({ disabled, loading }) =>
-    disabled || loading ? 'none' : null};
-  padding: 5px;
   color: ${({ isChildrenExists, variant, color }) => {
     if (isChildrenExists) {
       return 'none'
@@ -87,24 +113,9 @@ const Container = styled.button<ContainerProps>`
 
     return color
   }};
-  background-color: ${({ variant, color }) => {
-    if (variant === 'text') {
-      return white
-    }
-    return color
-  }};
-
-  :hover {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);
-  }
-`
-
-const Content = styled.div<ContentProps>`
-  /* border: solid 1px red; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
   opacity: ${({ disabled, loading }) => {
+    console.log('---> disabled, loading', disabled, loading)
+
     if (disabled || loading) {
       return 0.4
     }
@@ -114,6 +125,7 @@ const Content = styled.div<ContentProps>`
 
 const Loading = styled.div<LoadingProps>`
   /* border: solid 1px green; */
+  margin: 0 0 0 3px;
 `
 
 const StartIconWrap = styled.div`
