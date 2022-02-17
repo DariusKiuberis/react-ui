@@ -65,22 +65,10 @@ const Container = styled.button<ContainerProps>`
   padding: 5px;
 
   background-color: ${({ variant, color }) => {
-    console.log('---> color', color)
-
     if (variant === 'text') {
       return white
     }
 
-    if (color === 'primary') {
-      console.log(1111)
-      return primary
-    }
-
-    if (color === 'secondary') {
-      console.log(2222)
-      return secondary
-    }
-    console.log(3333)
     return color
   }};
 
