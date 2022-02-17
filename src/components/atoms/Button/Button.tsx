@@ -83,7 +83,7 @@ export const Button: FC<Props> = ({
   color,
   loading,
   loadingIcon,
-  // ripple,
+  ripple,
   type,
   fullWidth,
   fullHeight,
@@ -149,6 +149,7 @@ export const Button: FC<Props> = ({
       variant={variant}
       color={colorHandler(color)}
       loading={loading}
+      ripple={ripple}
       type={type}
       fullWidth={fullWidth}
       fullHeight={fullHeight}
@@ -187,8 +188,12 @@ Button.defaultProps = {
   fullHeight: false,
 }
 
+//@todo ripple works but need to be optional
+//@todo create toast. when disable, hover and toast says "need to wait"
 //@todo make label color changeble
 //@todo when clicking button do ripple  optionaly working
 //@todo if icon , label and children exist then no gaps atm, need margins
+//@todo loadingIcon not working
+//@todo when btn "contained" and disabled, barely visible difference
 
 //@note what is the diff between contained and upload?..

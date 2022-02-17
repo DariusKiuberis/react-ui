@@ -15,13 +15,7 @@ export default {
 
 export const ChildrenWithOneElement = (args: any) => (
   <Button {...args}>
-    <div
-      style={{
-        border: 'solid red 1px',
-      }}
-    >
-      CHILDREN DIV
-    </div>
+    <div>CHILDREN ONE</div>
   </Button>
 )
 

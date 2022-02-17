@@ -21,6 +21,7 @@ const App = () => {
         <div style={{ color: 'brown' }}>Children One</div>
         <div>Children Two</div>
       </Button>
+      <Button variant={'contained'}>Labas</Button>
     </div>
   )
 }

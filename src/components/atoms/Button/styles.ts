@@ -9,6 +9,7 @@ interface ContainerProps {
   size?: string
   color?: string
   loading?: boolean
+  ripple?: boolean
   fullWidth?: boolean
   fullHeight?: boolean
 }
@@ -32,6 +33,60 @@ interface ChildrenWrapProps {
 }
 
 const Container = styled.button<ContainerProps>`
+  position: relative;
+  overflow: hidden;
+
+  // ripple START
+  @-webkit-keyframes ripple {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 0.5;
+    }
+    100% {
+      width: 150px;
+      height: 150px;
+      opacity: 0;
+    }
+  }
+  @keyframes ripple {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 0.5;
+    }
+    100% {
+      width: 150px;
+      height: 150px;
+      opacity: 0;
+    }
+  }
+
+  :before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: currentColor;
+    visibility: hidden;
+    z-index: 2;
+  }
+  :not(:active):before {
+    -webkit-animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+    animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
+    -webkit-transition: visibility 0.4s step-end;
+    transition: visibility 0.4s step-end;
+  }
+  :active:before {
+    visibility: visible;
+  }
+  // ripple END
+
   border: ${({ disabled, outlined, color, loading }) => {
     if (outlined) {
       if (disabled || loading) {
@@ -78,6 +133,12 @@ const Container = styled.button<ContainerProps>`
       }
       return '0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);'
     }};
+
+    opacity: 0.9;
+  }
+
+  :focus {
+    opacity: 0.9;
   }
 `
 
@@ -128,7 +189,7 @@ const Content = styled.div<ContentProps>`
   }};
   opacity: ${({ disabled, loading }) => {
     if (disabled || loading) {
-      return 0.4
+      return 0.2
     }
     return 1
   }};
