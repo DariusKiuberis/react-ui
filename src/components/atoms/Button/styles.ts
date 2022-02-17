@@ -1,11 +1,18 @@
 import styled from 'styled-components'
-import { white } from '../../../stylesheets/colors'
+import {
+  primary,
+  secondary,
+  black,
+  greyLight,
+  white,
+} from '../../../stylesheets/colors'
 
 interface ContainerProps {
   readonly isActive?: boolean
   disabled?: boolean
   outlined?: boolean
   variant?: string
+  size?: string
   color?: string
   loading?: boolean
   fullWidth?: boolean
@@ -26,14 +33,20 @@ interface LoadingProps {
 }
 
 const Container = styled.button<ContainerProps>`
-  border: ${({ outlined, color }) => {
+  border: ${({ disabled, outlined, color, loading }) => {
     if (outlined) {
+      if (disabled || loading) {
+        return `solid 1px ${greyLight}`
+      }
       return `solid 1px ${color}`
     }
     return 'none'
   }};
 
   border-radius: 3px;
+  min-width: ${({ size }) => {
+    return size
+  }};
 
   /* width: ${(fullWidth) => (fullWidth ? '100%' : null)}; */
   /* height: ${(fullHeight) => (fullHeight ? '100%' : null)}; */
@@ -52,9 +65,22 @@ const Container = styled.button<ContainerProps>`
   padding: 5px;
 
   background-color: ${({ variant, color }) => {
+    console.log('---> color', color)
+
     if (variant === 'text') {
       return white
     }
+
+    if (color === 'primary') {
+      console.log(1111)
+      return primary
+    }
+
+    if (color === 'secondary') {
+      console.log(2222)
+      return secondary
+    }
+    console.log(3333)
     return color
   }};
 
@@ -102,20 +128,18 @@ const Content = styled.div<ContentProps>`
     }
     return '20px'
   }};
-  color: ${({ isChildrenExists, variant, color }) => {
-    if (isChildrenExists) {
-      return 'none'
+  color: ${({ variant }) => {
+    if (variant === 'text') {
+      return black()
     }
 
     if (variant === 'contained') {
       return white
     }
 
-    return color
+    return white
   }};
   opacity: ${({ disabled, loading }) => {
-    console.log('---> disabled, loading', disabled, loading)
-
     if (disabled || loading) {
       return 0.4
     }

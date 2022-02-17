@@ -14,7 +14,7 @@ export default {
   },
 } as Meta
 
-export const DisabledWithLabelAndTwoIcons = (args: any) => (
+export const DisabledWithVariantText = (args: any) => (
   <Button
     {...args}
     disabled
@@ -23,4 +23,42 @@ export const DisabledWithLabelAndTwoIcons = (args: any) => (
     label={'LABEL'}
     endIcon={<Settings fill={'tomato'} />}
   />
+)
+
+export const DisabledWithVariantContained = (args: any) => (
+  <Button
+    {...args}
+    disabled
+    onClick={() => console.log('Clicked button!')}
+    startIcon={<Settings fill={'tomato'} />}
+    label={'LABEL'}
+    endIcon={<Settings fill={'tomato'} />}
+    variant={'contained'}
+  />
+)
+
+export const DisabledWithVariantUpload = (args: any) => (
+  <Button
+    {...args}
+    disabled
+    onClick={() => console.log('Clicked button!')}
+    startIcon={<Settings fill={'tomato'} />}
+    label={'LABEL'}
+    endIcon={<Settings fill={'tomato'} />}
+    variant={'upload'}
+  />
+)
+
+export const DisabledWithAll = (args: any) => (
+  <Button
+    {...args}
+    disabled
+    onClick={() => console.log('Clicked button!')}
+    startIcon={<Settings fill={'tomato'} />}
+    label={'LABEL'}
+    endIcon={<Settings fill={'tomato'} />}
+  >
+    <div>Children One</div>
+    <div>Children Two</div>
+  </Button>
 )

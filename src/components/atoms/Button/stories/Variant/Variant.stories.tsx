@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/react'
 import { Button } from '../../Button'
 import { argTypes } from '../argTypes'
-import { Contained, Text } from './variant'
+import { Text, Contained, Upload } from './variant'
 
 export default {
   title: 'Components/Atoms/Button/Variants',
@@ -13,4 +13,4 @@ export default {
   },
 } as Meta
 
-export { Contained, Text }
+export { Text, Contained, Upload }

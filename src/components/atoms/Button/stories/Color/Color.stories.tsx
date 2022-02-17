@@ -14,14 +14,31 @@ export default {
   },
 } as Meta
 
-export const ColorWithVariantText = (args: any) => (
-  <Button {...args} color={'tomato'} />
+export const ColorPrimary = (args: any) => (
+  <Button {...args} label={'Primary'} variant={'contained'} color={'primary'} />
 )
 
-export const ColorWithVariantContained = (args: any) => (
-  <Button {...args} variant={'contained'} color={'tomato'} />
+export const ColorSecondary = (args: any) => (
+  <Button
+    {...args}
+    label={'Secondary'}
+    variant={'contained'}
+    color={'secondary'}
+  />
 )
 
-export const ColorWithVariantUpload = (args: any) => (
-  <Button {...args} variant={'upload'} color={'tomato'} />
+export const ColorSuccess = (args: any) => (
+  <Button {...args} label={'Success'} variant={'contained'} color={'success'} />
+)
+
+export const ColorError = (args: any) => (
+  <Button {...args} label={'Error'} variant={'contained'} color={'error'} />
+)
+
+export const ColorInfo = (args: any) => (
+  <Button {...args} label={'Info'} variant={'contained'} color={'info'} />
+)
+
+export const ColorWarning = (args: any) => (
+  <Button {...args} label={'Warning'} variant={'contained'} color={'warning'} />
 )

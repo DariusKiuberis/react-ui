@@ -29,7 +29,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   disabled?: boolean
   outlined?: boolean
   variant?: 'text' | 'contained' | 'upload'
-  size?: 'small' | 'medium' | 'large' | '100%'
+  size?: string | 'small' | 'medium' | 'large' | '100%'
   color?:
     | string
     | 'primary'
@@ -154,6 +154,7 @@ export const Button: FC<Props> = ({
       <S.Content
         isChildrenExists={isChildrenExists()}
         disabled={disabled || loading}
+        variant={variant}
         loading={loading}
         size={size}
       >
@@ -184,5 +185,7 @@ Button.defaultProps = {
   fullHeight: false,
 }
 
-//@todo when disabled or loading dim border color
+//@todo make label color changeble
 //@todo when clicking button do ripple  optionaly working
+
+//@note what is the diff between contained and upload?..

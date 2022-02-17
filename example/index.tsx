@@ -9,12 +9,14 @@ const App = () => {
     <div>
       <Button
         label={'--Label--'}
-        startIcon={<Settings fill={'tomato'} />}
-        endIcon={<Settings fill={'tomato'} />}
-        disabled={true}
+        // startIcon={<Settings fill={'tomato'} />}
+        // endIcon={<Settings fill={'tomato'} />}
+        // disabled={true}
+        variant={'contained'}
         // outlined={false}
-        size={'medium'}
+        // size={'100%'}
         // loading={true}
+        // color={'red888'}
       >
         <div>Children One</div>
         <div>Children Two</div>
