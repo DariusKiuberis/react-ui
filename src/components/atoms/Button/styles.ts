@@ -83,7 +83,12 @@ const Container = styled.button<ContainerProps>`
     transition: visibility 0.4s step-end;
   }
   :active:before {
-    visibility: visible;
+    visibility: ${({ ripple }) => {
+      if (ripple) {
+        return ' hiden'
+      }
+      return 'visible'
+    }};
   }
   // ripple END
 
@@ -134,7 +139,7 @@ const Container = styled.button<ContainerProps>`
       return '0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.3);'
     }};
 
-    opacity: 0.9;
+    opacity: 0.9; //this is for ripple effect
   }
 
   :focus {
