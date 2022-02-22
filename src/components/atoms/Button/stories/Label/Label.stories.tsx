@@ -13,4 +13,10 @@ export default {
   },
 } as Meta
 
-export const TextNoLabel = (args: any) => <Button {...args} variant={'text'} />
+export const Text = (args: any) => (
+  <Button {...args} label={'Text'} variant={'text'} />
+)
+
+export const TextWithCustomColor = (args: any) => (
+  <Button {...args} label={'Text'} variant={'text'} />
+)

@@ -8,6 +8,7 @@ const App = () => {
   return (
     <div>
       <Button
+        styleContent={{ border: 'solid red', color: 'red' }}
         label={'--Label---'}
         // startIcon={<Settings fill={'tomato'} />}
         // endIcon={<Settings fill={'tomato'} />}
@@ -21,7 +22,9 @@ const App = () => {
         <div style={{ color: 'brown' }}>Children One</div>
         <div>Children Two</div>
       </Button>
-      <Button variant={'contained'}>Labas</Button>
+      <Button styleContent={{ color: 'red' }} variant={'contained'}>
+        Labas
+      </Button>
     </div>
   )
 }

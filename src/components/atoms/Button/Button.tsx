@@ -12,6 +12,7 @@ import S from './styles'
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   style?: CSSProperties
+  styleContent?: CSSProperties
   startIcon?: ReactElement | ReactSVGElement | null
   endIcon?: ReactElement | ReactSVGElement | null
   label?: string | number
@@ -50,6 +51,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
  * A Button. All Params is optional.
  *
  * @param style CSSProperties
+ * @param styleContent CSSProperties
  * @param startIcon ReactElement | ReactSVGElement | null
  * @param endIcon ReactElement | ReactSVGElement | null
  * @param label string | number
@@ -71,6 +73,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
  */
 export const Button: FC<Props> = ({
   style,
+  styleContent,
   startIcon,
   endIcon,
   label,
@@ -155,6 +158,7 @@ export const Button: FC<Props> = ({
       fullHeight={fullHeight}
     >
       <S.Content
+        style={styleContent}
         isChildrenExists={isChildrenExists()}
         disabled={disabled || loading}
         variant={variant}
@@ -188,10 +192,8 @@ Button.defaultProps = {
   fullHeight: false,
 }
 
-//@todo ripple works but need to be optional
 //@todo create toast. when disable, hover and toast says "need to wait"
 //@todo make label color changeble
-//@todo when clicking button do ripple  optionaly working
 //@todo if icon , label and children exist then no gaps atm, need margins
 //@todo loadingIcon not working
 //@todo when btn "contained" and disabled, barely visible difference
