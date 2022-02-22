@@ -1,5 +1,6 @@
 import React, { FC, HTMLAttributes } from 'react'
 import styled, { keyframes } from 'styled-components'
+import { grey } from '../../../stylesheets/colors'
 
 interface SpinnerProps {
   color?: string
@@ -53,7 +54,7 @@ const Circle: FC<Props> = ({ color, size, sizeUnit }) => (
 
 Circle.defaultProps = {
   size: 20,
-  color: '#00bfff',
+  color: grey,
   sizeUnit: 'px',
 }
 

@@ -6,7 +6,7 @@ import React, {
   ReactSVGElement,
   CSSProperties,
 } from 'react'
-import { DualRing } from '../Spinners'
+import { Circle } from '../Spinners'
 import colorHandler from './logic/colorHandler'
 import S from './styles'
 
@@ -134,7 +134,7 @@ export const Button: FC<Props> = ({
       if (loadingIcon) {
         return loadingIcon
       }
-      return <DualRing />
+      return <Circle />
     }
     return
   }
@@ -197,9 +197,7 @@ Button.defaultProps = {
 }
 
 //@todo create toast. when disable, hover and toast says "need to wait"
-//@todo make label color changeble
 //@todo if icon , label and children exist then no gaps atm, need margins
-//@todo loadingIcon not working
 //@todo when btn "contained" and disabled, barely visible difference
 
 //@note what is the diff between contained and upload?..

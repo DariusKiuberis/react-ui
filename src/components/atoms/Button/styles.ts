@@ -219,8 +219,6 @@ const LabelWrap = styled.div<LabelWrapProps>`
   /* border: solid 1px green; */
   white-space: nowrap;
   color: ${({ labelColor }) => {
-    console.log('---> labelColor', labelColor)
-
     if (labelColor === null || labelColor === '') {
       return null
     }
