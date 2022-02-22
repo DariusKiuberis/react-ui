@@ -16,6 +16,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
   startIcon?: ReactElement | ReactSVGElement | null
   endIcon?: ReactElement | ReactSVGElement | null
   label?: string | number
+  labelColor?: string
   children?:
     | (React.ReactChild &
         (
@@ -55,6 +56,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
  * @param startIcon ReactElement | ReactSVGElement | null
  * @param endIcon ReactElement | ReactSVGElement | null
  * @param label string | number
+ * @param labelColor string
  * @param children ReactChild
  * @param onClick () => void
  * @param disabled boolean
@@ -77,6 +79,7 @@ export const Button: FC<Props> = ({
   startIcon,
   endIcon,
   label,
+  labelColor,
   children,
   onClick,
   disabled,
@@ -118,7 +121,7 @@ export const Button: FC<Props> = ({
     return (
       <>
         <S.StartIconWrap>{startIconHandler()}</S.StartIconWrap>
-        <S.LabelWrap>{labelHandler()}</S.LabelWrap>
+        <S.LabelWrap labelColor={labelColor}>{labelHandler()}</S.LabelWrap>
         <S.ChildrenWrap isChildrenExists={isChildrenExists()}>
           {childrenHandler()}
         </S.ChildrenWrap>
@@ -177,6 +180,7 @@ export const Button: FC<Props> = ({
 
 Button.defaultProps = {
   label: '',
+  labelColor: '',
   startIcon: null,
   endIcon: null,
   disabled: false,

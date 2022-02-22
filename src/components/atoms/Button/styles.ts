@@ -22,6 +22,10 @@ interface ContentProps {
   loading?: boolean
 }
 
+interface LabelWrapProps {
+  labelColor?: string
+}
+
 interface LoadingProps {
   disabled?: boolean
   loading?: boolean
@@ -211,9 +215,17 @@ const StartIconWrap = styled.div`
   display: flex;
 `
 
-const LabelWrap = styled.div`
+const LabelWrap = styled.div<LabelWrapProps>`
   /* border: solid 1px green; */
   white-space: nowrap;
+  color: ${({ labelColor }) => {
+    console.log('---> labelColor', labelColor)
+
+    if (labelColor === null || labelColor === '') {
+      return null
+    }
+    return labelColor
+  }};
 `
 
 const ChildrenWrap = styled.div<ChildrenWrapProps>`
