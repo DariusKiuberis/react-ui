@@ -1,40 +1,12 @@
 import styled from 'styled-components'
 import { black, greyLight, white } from '../../../stylesheets/colors'
-
-interface ContainerProps {
-  readonly isActive?: boolean
-  disabled?: boolean
-  outlined?: boolean
-  variant?: string
-  size?: string
-  color?: string
-  loading?: boolean
-  ripple?: boolean
-  fullWidth?: boolean
-  fullHeight?: boolean
-}
-
-interface ContentProps {
-  isChildrenExists?: boolean
-  disabled?: boolean
-  variant?: string
-  size?: string
-  loading?: boolean
-}
-
-interface LabelWrapProps {
-  labelColor?: string
-}
-
-interface LoadingProps {
-  disabled?: boolean
-  loading?: boolean
-}
-
-interface ChildrenWrapProps {
-  color?: string
-  isChildrenExists?: boolean
-}
+import {
+  ContainerProps,
+  ContentProps,
+  LabelWrapProps,
+  LoadingProps,
+  ChildrenWrapProps,
+} from './types/styles.types'
 
 const Container = styled.button<ContainerProps>`
   position: relative;
