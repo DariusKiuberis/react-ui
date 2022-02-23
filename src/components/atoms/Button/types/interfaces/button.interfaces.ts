@@ -22,7 +22,7 @@ export interface IButton extends HTMLAttributes<HTMLDivElement> {
           | null
         ))
     | undefined
-  onClick?: () => void
+  onClick?: (e?: any) => any
   disabled?: boolean
   outlined?: boolean
   variant?: 'text' | 'contained' | 'upload'
@@ -41,4 +41,5 @@ export interface IButton extends HTMLAttributes<HTMLDivElement> {
   type?: 'button' | 'submit' | 'reset'
   width?: string | number | null
   height?: string | number | null
+  handleFile?: (file?: any) => any
 }

@@ -121,7 +121,6 @@ const Container = styled.button<ContainerProps>`
       if (typeof width === 'number') {
         return `${width}px`
       }
-
       return width
     }
     if (size === 'small') {
@@ -142,7 +141,6 @@ const Container = styled.button<ContainerProps>`
       if (typeof height === 'number') {
         return `${height}px`
       }
-
       return height
     }
     if (size === 'small') {

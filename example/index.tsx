@@ -6,36 +6,18 @@ import { Circle } from '../src/components/atoms/Spinners'
 // import Settings from './mocks/svg/Settings'
 
 const App = () => {
+  const handle = (f: any) => {
+    console.log(333, f)
+  }
   return (
     <div>
+      <Button label={'btn1'} onClick={() => console.log('btn1')} />
+      <Button label={'btn2'} />
       <Button
-        // styleContent={{ color: 'red' }}
-        label={'--Label---'}
-        // startIcon={<Settings fill={'tomato'} />}
-        // endIcon={<Settings fill={'tomato'} />}
-        // disabled={true}
-        // variant={'contained'}
-        // outlined={false}
-        // size={'100%'}
-        loading={true}
-        loadingIcon={<Circle />}
-        // color={'red888'}
-      >
-        <div style={{ color: 'brown' }}>Children One</div>
-        <div>Children Two</div>
-      </Button>
-      <Button
-        // styleContent={{ color: 'aqua' }}
-        label={'lalal'}
-        labelColor={'red'}
-        variant={'contained'}
-        // disabled
-        size={'large'}
-        // width={300}
-        // height={200}
-      >
-        <div>Labas </div>
-      </Button>
+        label={'btn3 upload'}
+        variant={'upload'}
+        handleFile={(f) => handle(f)}
+      />
     </div>
   )
 }

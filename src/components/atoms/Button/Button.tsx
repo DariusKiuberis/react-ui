@@ -14,7 +14,7 @@ import { IButton } from './types/interfaces/button.interfaces'
  * @param label string | number
  * @param labelColor string
  * @param children ReactChild
- * @param onClick () => void
+ * @param onClick () => any
  * @param disabled boolean
  * @param outlined boolean
  * @param variant 'text' | 'contained' | 'upload'
@@ -26,6 +26,7 @@ import { IButton } from './types/interfaces/button.interfaces'
  * @param type 'button' | 'submit' | 'reset'
  * @param width boolean
  * @param height boolean
+ * @param handleFile any
  *
  * @returns  JSX.Element
  */
@@ -49,7 +50,10 @@ export const Button: FC<IButton> = ({
   type,
   width,
   height,
+  handleFile,
 }) => {
+  const hiddenFileInput = React.useRef<HTMLInputElement>(null)
+
   const isChildrenExists = () => {
     if (!React.Children.count(children)) return false
     return true
@@ -102,34 +106,57 @@ export const Button: FC<IButton> = ({
     return true
   }
 
+  const handleUpload = () => {
+    if (variant === 'upload') {
+      if (hiddenFileInput && hiddenFileInput.current) {
+        return hiddenFileInput.current.click()
+      }
+    }
+  }
+
+  const handleChange = (event: any) => {
+    const fileUploaded = event.target.files[0]
+    if (handleFile) handleFile(fileUploaded)
+  }
+
   return (
-    <S.Container
-      style={style}
-      onClick={onClick}
-      outlined={outlinedHandler()}
-      disabled={disabled || loading}
-      variant={variant}
-      size={size}
-      color={colorHandler(color)}
-      loading={loading}
-      ripple={ripple}
-      type={type}
-      width={width}
-      height={height}
-    >
-      <S.Content
-        style={styleContent}
+    <>
+      <S.Container
+        style={style}
+        onClick={onClick ? onClick : handleUpload}
+        outlined={outlinedHandler()}
         disabled={disabled || loading}
         variant={variant}
+        size={size}
+        color={colorHandler(color)}
         loading={loading}
+        ripple={ripple}
+        type={type}
+        width={width}
+        height={height}
       >
-        {contentHandler()}
-      </S.Content>
+        <S.Content
+          style={styleContent}
+          disabled={disabled || loading}
+          variant={variant}
+          loading={loading}
+        >
+          {contentHandler()}
+        </S.Content>
 
-      <S.Loading>
-        <S.LoadingWrap>{loadingHandler()}</S.LoadingWrap>
-      </S.Loading>
-    </S.Container>
+        <S.Loading>
+          <S.LoadingWrap>{loadingHandler()}</S.LoadingWrap>
+        </S.Loading>
+      </S.Container>
+      {/* <button onClick={handleClick}>lalala</button> */}
+      <input
+        type="file"
+        ref={hiddenFileInput}
+        onChange={handleChange}
+        style={{ border: 'solid blue', display: 'none' }}
+        // hidden
+      />
+    </>
   )
 }
 
@@ -151,9 +178,6 @@ Button.defaultProps = {
   height: null,
 }
 
-//@todo changable button height
 //@todo create toast. when disable, hover and toast says "need to wait"
 //@todo if icon , label and children exist then no gaps atm, need margins
 //@todo when btn "contained" and disabled, barely visible difference
-
-//@note what is the diff between contained and upload?..
