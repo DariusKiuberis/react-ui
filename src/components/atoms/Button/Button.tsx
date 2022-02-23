@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Circle } from '../Spinners'
 import colorHandler from './logic/colorHandler'
 import S from './styles'
-import { ButtonProps } from './types/interfaces/button.interfaces'
+import { IButton } from './types/interfaces/button.interfaces'
 
 /**
  * A Button. All Params is optional.
@@ -24,12 +24,12 @@ import { ButtonProps } from './types/interfaces/button.interfaces'
  * @param loadingIcon ReactElement | ReactSVGElement | null
  * @param ripple boolean
  * @param type 'button' | 'submit' | 'reset'
- * @param fullWidth boolean
- * @param fullHeight boolean
+ * @param width boolean
+ * @param height boolean
  *
  * @returns  JSX.Element
  */
-export const Button: FC<ButtonProps> = ({
+export const Button: FC<IButton> = ({
   style,
   styleContent,
   startIcon,
@@ -47,8 +47,8 @@ export const Button: FC<ButtonProps> = ({
   loadingIcon,
   ripple,
   type,
-  fullWidth,
-  fullHeight,
+  width,
+  height,
 }) => {
   const isChildrenExists = () => {
     if (!React.Children.count(children)) return false
@@ -109,19 +109,19 @@ export const Button: FC<ButtonProps> = ({
       outlined={outlinedHandler()}
       disabled={disabled || loading}
       variant={variant}
+      size={size}
       color={colorHandler(color)}
       loading={loading}
       ripple={ripple}
       type={type}
-      fullWidth={fullWidth}
-      fullHeight={fullHeight}
+      width={width}
+      height={height}
     >
       <S.Content
         style={styleContent}
         disabled={disabled || loading}
         variant={variant}
         loading={loading}
-        size={size}
       >
         {contentHandler()}
       </S.Content>
@@ -147,10 +147,11 @@ Button.defaultProps = {
   loadingIcon: null,
   ripple: false,
   type: 'button',
-  fullWidth: false,
-  fullHeight: false,
+  width: null,
+  height: null,
 }
 
+//@todo changable button height
 //@todo create toast. when disable, hover and toast says "need to wait"
 //@todo if icon , label and children exist then no gaps atm, need margins
 //@todo when btn "contained" and disabled, barely visible difference

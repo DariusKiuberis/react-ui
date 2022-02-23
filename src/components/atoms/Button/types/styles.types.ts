@@ -9,8 +9,8 @@ export type ContainerProps = Pick<
   | 'size'
   | 'loading'
   | 'ripple'
-  | 'fullWidth'
-  | 'fullHeight'
+  | 'width'
+  | 'height'
 >
 
 export type ContentProps = Pick<

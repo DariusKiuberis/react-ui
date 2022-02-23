@@ -29,9 +29,12 @@ const App = () => {
         label={'lalal'}
         labelColor={'red'}
         variant={'contained'}
-        disabled
+        // disabled
+        size={'large'}
+        // width={300}
+        // height={200}
       >
-        <div>Labas</div>
+        <div>Labas </div>
       </Button>
     </div>
   )

@@ -26,7 +26,7 @@ export interface IButton extends HTMLAttributes<HTMLDivElement> {
   disabled?: boolean
   outlined?: boolean
   variant?: 'text' | 'contained' | 'upload'
-  size?: string | 'small' | 'medium' | 'large' | '100%'
+  size?: 'small' | 'medium' | 'large'
   color?:
     | string
     | 'primary'
@@ -39,6 +39,6 @@ export interface IButton extends HTMLAttributes<HTMLDivElement> {
   loadingIcon?: ReactElement | ReactSVGElement | null
   ripple?: boolean
   type?: 'button' | 'submit' | 'reset'
-  fullWidth?: boolean
-  fullHeight?: boolean
+  width?: string | number | null
+  height?: string | number | null
 }

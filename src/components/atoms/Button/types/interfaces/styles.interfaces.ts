@@ -1,10 +1,10 @@
-import { ButtonProps } from './button.interfaces'
+import { IButton } from './button.interfaces'
 
 export interface EXAMPLEContainerProps
-  extends Pick<ButtonProps, 'disabled' | 'outlined'> {
+  extends Pick<IButton, 'disabled' | 'outlined'> {
   labelSuperDuper: string
 }
 
-export interface IChildrenWrap extends Pick<ButtonProps, 'color'> {
+export interface IChildrenWrap extends Pick<IButton, 'color'> {
   isChildrenExists?: boolean
 }

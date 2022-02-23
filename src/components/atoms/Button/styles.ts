@@ -79,12 +79,6 @@ const Container = styled.button<ContainerProps>`
   }};
 
   border-radius: 3px;
-  min-width: ${({ size }) => {
-    return size
-  }};
-
-  /* width: ${(fullWidth) => (fullWidth ? '100%' : null)}; */
-  /* height: ${(fullHeight) => (fullHeight ? '100%' : null)}; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,14 +115,15 @@ const Container = styled.button<ContainerProps>`
   :focus {
     opacity: 0.9;
   }
-`
 
-const Content = styled.div<ContentProps>`
-  /* border: solid 1px red; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: ${({ size }) => {
+  min-width: ${({ size, width }) => {
+    if (width) {
+      if (typeof width === 'number') {
+        return `${width}px`
+      }
+
+      return width
+    }
     if (size === 'small') {
       return '50px'
     }
@@ -139,9 +134,17 @@ const Content = styled.div<ContentProps>`
       return '100px'
     }
 
-    return size
+    return null
   }};
-  min-height: ${({ size }) => {
+
+  min-height: ${({ size, height }) => {
+    if (height) {
+      if (typeof height === 'number') {
+        return `${height}px`
+      }
+
+      return height
+    }
     if (size === 'small') {
       return '15px'
     }
@@ -155,8 +158,16 @@ const Content = styled.div<ContentProps>`
     if (size === '100%') {
       return '100%'
     }
-    return '20px'
+
+    return null
   }};
+`
+
+const Content = styled.div<ContentProps>`
+  /* border: solid 1px red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: ${({ variant }) => {
     if (variant === 'text') {
       return black()
