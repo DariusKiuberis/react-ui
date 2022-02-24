@@ -2,7 +2,7 @@
   "name": "@darius-kiuberis/react-ui",
   "author": "Darius Kiuberis",
   "repository": "git://github.com/DariusKiuberis/react-ui.git",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "module": "dist/react-ui.esm.js",
   "main": "dist/index.js",
   "license": "MIT",
