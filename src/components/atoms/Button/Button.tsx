@@ -178,6 +178,5 @@ Button.defaultProps = {
   height: null,
 }
 
-//@todo create toast. when disable, hover and toast says "need to wait"
 //@todo if icon , label and children exist then no gaps atm, need margins
 //@todo when btn "contained" and disabled, barely visible difference

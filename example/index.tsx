@@ -6,8 +6,8 @@ import { Circle } from '../src/components/atoms/Spinners'
 // import Settings from './mocks/svg/Settings'
 
 const App = () => {
-  const handle = (f: any) => {
-    console.log(333, f)
+  const handle = (file: any) => {
+    console.log(333, file)
   }
   return (
     <div>
@@ -16,7 +16,7 @@ const App = () => {
       <Button
         label={'btn3 upload'}
         variant={'upload'}
-        handleFile={(f) => handle(f)}
+        handleFile={(file) => handle(file)}
       />
     </div>
   )
